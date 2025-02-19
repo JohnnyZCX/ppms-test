@@ -666,6 +666,7 @@ class PddI5Iot():
             sheet.append(["环境气象-逐日数据统计", "异常"])
 
         # 物联网-环境气象-逐日数据列表
+        time.sleep(2)
         self.driver.find_element(By.XPATH, "//li[text()='逐日数据列表 ']").click()
         try:
             time.sleep(4)
@@ -870,6 +871,7 @@ class PddI5Iot():
 
         # 关闭其他页面
         self.driver.find_element(By.XPATH, "//span[text()='工作平台']").click()
+        time.sleep(3)
         self.driver.find_element(By.XPATH, "//i[@class='el-icon-circle-close']").click()
         try:
             element = WebDriverWait(self.driver, 10).until(
@@ -877,16 +879,18 @@ class PddI5Iot():
                     (By.XPATH, "//ul[@class='el-dropdown-menu el-popper']/li[text()='关闭其他']"))
             )
             element.click()
-            utils.g_logger.info("成功关闭所有页面")
+            utils.g_logger.info("成功关闭其他页面")
         except Exception as e:
             print(e)
 
         # 虫量对比分析页
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[text()='虫量对比分析']").click()
         try:
             time.sleep(8)
             element = WebDriverWait(self.driver, 15).until(
-                EC.visibility_of_element_located((By.XPATH, "//label[text()='虫害类型']/following-sibling::div//div[@role='radiogroup']")))
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//label[text()='虫害类型']/following-sibling::div//div[@role='radiogroup']")))
             unittest.TestCase.assertTrue(element is not None,
                                          "成功打开物联网-虫量对比分析页，且虫害类型选项存在")
             utils.g_logger.info("物联网-虫量对比分析页显示正常")
