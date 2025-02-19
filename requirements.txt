@@ -1,0 +1,4 @@
+ddddocr==1.5.6
+openpyxl==3.1.5
+selenium==4.28.1
+webdriver_manager==4.0.2
