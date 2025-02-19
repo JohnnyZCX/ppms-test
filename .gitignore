@@ -1,4 +1,4 @@
 # 忽略当前目录下logs文件夹下的所有内容
-**/logs/*
+**.log
 # 忽略outputs目录下的文件
 **/outputs/*
