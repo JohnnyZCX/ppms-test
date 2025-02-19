@@ -12,7 +12,7 @@ import utils
 
 MAX_TRIES = 4
 
-cfg = utils.load_cfg()
+# cfg = utils.load_cfg()
 wb = openpyxl.Workbook()
 
 
@@ -40,15 +40,15 @@ class PddI5Iot():
         # 写入表头
         headers = ["页面", "检测结果"]
         sheet.append(headers)
-        # username = input("广西省级系统生产环境巡检开始\n请输入登录用户名：")
-        # password = input("请输入登录密码：")
-        guangXi_cfg = cfg["guangXi"]
+        username = input("广西省级系统生产环境巡检开始\n请输入登录用户名：")
+        password = input("请输入登录密码：")
+        """guangXi_cfg = cfg["guangXi"]
         base_url = guangXi_cfg["baseUrl"]
         username = guangXi_cfg["username"]
-        password = guangXi_cfg["password"]
+        password = guangXi_cfg["password"]"""
         self.driver.maximize_window()
-        self.driver.get(base_url + "login")
-        # self.driver.get("https://gx.pestiot.com/login")
+        # self.driver.get(base_url + "login")
+        self.driver.get("https://gx.pestiot.com/login")
         self.driver.implicitly_wait(4)
 
         # 登录
@@ -665,11 +665,10 @@ class PddI5Iot():
             sheet.append(["环境气象-逐日数据统计", "异常"])
 
         # 物联网-环境气象-逐日数据列表
-        time.sleep(2)
         self.driver.find_element(By.XPATH, "//li[text()='逐日数据列表 ']").click()
         try:
-            time.sleep(4)
-            self.driver.find_element(By.XPATH, "//div[@id='orgboxzTree']//i[@class='el-icon-arrow-down']").click()
+            time.sleep(8)
+            self.driver.find_element(By.XPATH, "//label[text()='站点']/following-sibling::div/div[@id='orgboxzTree']").click()
             orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
                 (By.XPATH, "//ul[starts-with(@id,'orgTree') and @class='ztree']//a[@title='广西壮族自治区']")))
             unittest.TestCase.assertTrue(orgnization_tree_element is not None,
@@ -1013,6 +1012,101 @@ class PddI5Iot():
         except Exception as e:
             utils.g_logger.info(e)
             sheet.append(["数据分析-综合分析", "异常"])
+
+        # 数据分析-专题分析页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='专题分析']").click()
+        try:
+            time.sleep(3)
+            elements = WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located(
+                (By.XPATH, "//div[@class='el-image']")))
+            unittest.TestCase.assertTrue(elements is not None,
+                                         "成功打开数据分析-专题分析页，且指定元素存在")
+            self.driver.find_element(By.XPATH, "//div[@class='row-title'][text()=' 稻纵卷叶螟 ']").click()
+            time.sleep(3)
+            indicator_element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//div[@class='section_left section_left_light']/ul/li[1]")))
+            unittest.TestCase.assertTrue(indicator_element is not None,
+                                         "成功打开数据分析-专题分析页，且指定元素存在")
+            utils.g_logger.info("数据分析-专题分析页显示正常")
+            sheet.append(["数据分析-专题分析", "正常"])
+            self.driver.find_element(By.XPATH, "//div[@class='el-form-item__content']//span[text()='关闭']").click()
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据分析-专题分析", "异常"])
+
+        # 数据分析-GIS分析页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='GIS分析']").click()
+        try:
+            time.sleep(3)
+            element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(
+                (By.XPATH, "//label[text()='分析指标']")))
+            unittest.TestCase.assertTrue(element is not None,
+                                         "成功打开数据分析-GIS分析页，且指定元素存在")
+            map_element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//div[@class='map']")))
+            unittest.TestCase.assertTrue(map_element is not None,
+                                         "成功打开数据分析-GIS分析页，且指定元素存在")
+            utils.g_logger.info("数据分析-GIS分析页显示正常")
+            sheet.append(["数据分析-GIS分析", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据分析-GIS分析", "异常"])
+
+        # 数据分析-自定义分析页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='自定义分析']").click()
+        try:
+            time.sleep(5)
+            self.driver.find_element(By.XPATH, "//div[@class='report-selector']").click()
+            elements = WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, "//img[contains(@src,'/upload/specialtype/')]")))
+            unittest.TestCase.assertTrue(elements is not None,"成功打开数据分析-自定义分析页，且指定元素存在")
+            utils.g_logger.info("数据分析-自定义分析页显示正常")
+            sheet.append(["数据分析-自定义分析", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据分析-自定义分析", "异常"])
+
+        # 数据分析-数据报告页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='数据报告']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//label[text()='周期']/following-sibling::div/div[@role='radiogroup']")))
+            unittest.TestCase.assertTrue(element is not None,"成功打开数据分析-数据报告页，且指定元素存在")
+            utils.g_logger.info("数据分析-数据报告页显示正常")
+            sheet.append(["数据分析-数据报告", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据分析-数据报告", "异常"])
+
+        # 关闭所有页面
+        self.driver.find_element(By.XPATH, "//i[@class='el-icon-circle-close']").click()
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, "//ul[@class='el-dropdown-menu el-popper']/li[text()='关闭所有']"))
+            )
+            element.click()
+            utils.g_logger.info("成功关闭所有页面")
+        except Exception as e:
+            utils.g_logger.info(e)
+
+        # 知识库-工作平台页
+        self.driver.find_element(By.XPATH, "//div[starts-with(@class,'navi-item')][text()='知识库 ']").click()
+        try:
+            time.sleep(5)
+            elements = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//div[@class='title'][text()='病虫害知识库']/parent::div/following-sibling::div//img")))
+            unittest.TestCase.assertTrue(elements is not None, "成功打开知识库-工作平台页，且指定元素存在")
+            utils.g_logger.info("知识库-工作平台页显示正常")
+            sheet.append(["知识库-工作平台", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-工作平台", "异常"])
 
         # 调整列宽
         for col in sheet.columns:

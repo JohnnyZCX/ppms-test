@@ -61,7 +61,7 @@ def write_json_data(path, obj):
 
 def load_cfg(part_name=None, encoding="utf-8"):
     cp = ConfigParser()
-    cp.read(CUR_PATH + "/system.cfg", encoding=encoding)
+    cp.read(CUR_PATH + "\\system.cfg", encoding=encoding)
 
     if part_name:
         # print(part_name, path)

@@ -2,3 +2,4 @@
 **.log
 # 忽略outputs目录下的文件
 **/outputs/*
+**.spec
