@@ -3,8 +3,8 @@ import unittest
 
 import ddddocr
 import openpyxl
-from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.common.by import By
+from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 
@@ -12,7 +12,7 @@ import utils
 
 MAX_TRIES = 4
 
-# cfg = utils.load_cfg()
+cfg = utils.load_cfg()
 wb = openpyxl.Workbook()
 
 
@@ -31,7 +31,6 @@ class PddI5Iot():
         self.driver = utils.new_chrome()
         self.driver.maximize_window()
         print("系统重启")
-        # self.pddi5.re_connet()
 
     @utils.retry(MAX_TRIES)
     def test_guangXi(self):
@@ -41,15 +40,15 @@ class PddI5Iot():
         # 写入表头
         headers = ["页面", "检测结果"]
         sheet.append(headers)
-        username = input("广西省级系统生产环境巡检开始\n请输入登录用户名：")
-        password = input("请输入登录密码：")
-        '''guangXi_cfg = cfg["guangXi"]
+        # username = input("广西省级系统生产环境巡检开始\n请输入登录用户名：")
+        # password = input("请输入登录密码：")
+        guangXi_cfg = cfg["guangXi"]
         base_url = guangXi_cfg["baseUrl"]
         username = guangXi_cfg["username"]
-        password = guangXi_cfg["password"]'''
+        password = guangXi_cfg["password"]
         self.driver.maximize_window()
-        # self.driver.get(base_url + "login")
-        self.driver.get("https://gx.pestiot.com/login")
+        self.driver.get(base_url + "login")
+        # self.driver.get("https://gx.pestiot.com/login")
         self.driver.implicitly_wait(4)
 
         # 登录
@@ -69,8 +68,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(element is not None, "登录成功，成功打开首页，且指定元素存在")
             utils.g_logger.info(f"登录成功，成功打开首页")
             sheet.append(["首页", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info(f"首页元素'全年任务数量'不存在")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["首页", "异常"])
 
         # 数据填报工作平台页
@@ -82,8 +81,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(element is not None, "成功打开数据填报工作平台，且指定元素存在")
             utils.g_logger.info("数据填报-工作平台页显示正常")
             sheet.append(["数据填报-工作平台", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-工作平台页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-工作平台", "异常"])
 
         # 数据填报任务填报页
@@ -97,8 +96,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开任务填报页，且指定元素存在")
             utils.g_logger.info("数据填报-任务填报页显示正常")
             sheet.append(["数据填报-任务填报", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-任务填报页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-任务填报", "异常"])
 
         # 数据填报数据查询页
@@ -117,8 +116,8 @@ class PddI5Iot():
                                          "成功打开数据填报-数据查询页，且站点列表存在")
             utils.g_logger.info("数据填报-数据查询页显示正常")
             sheet.append(["数据填报-数据查询", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-数据查询页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-数据查询", "异常"])
 
         # 数据填报数据汇总页
@@ -137,8 +136,8 @@ class PddI5Iot():
                                          "成功打开数据汇总页，且站点列表存在")
             utils.g_logger.info("数据填报-数据汇总页显示正常")
             sheet.append(["数据填报-数据汇总", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-数据汇总页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-数据汇总", "异常"])
 
         # 数据填报催报查询页
@@ -157,8 +156,8 @@ class PddI5Iot():
                                          "成功打开催报查询页，且站点列表存在")
             utils.g_logger.info("数据填报-催报查询页显示正常")
             sheet.append(["数据填报-催报查询", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-催报查询页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-催报查询", "异常"])
 
         # 数据填报报送评价页
@@ -177,8 +176,8 @@ class PddI5Iot():
                                          "成功打开报送评价页，且站点列表存在")
             utils.g_logger.info("数据填报-报送评价页显示正常")
             sheet.append(["数据填报-报送评价", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-报送评价页显示异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-报送评价", "异常"])
 
         # 数据填报填报任务一览页
@@ -193,8 +192,8 @@ class PddI5Iot():
                                          "成功打开填报任务一览页，且站点列表存在")
             utils.g_logger.info("数据填报-填报任务一览页显示正常")
             sheet.append(["数据填报-填报任务一览", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-填报任务一览页显示异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-填报任务一览", "异常"])
 
         # 数据填报汇总统计页
@@ -209,8 +208,8 @@ class PddI5Iot():
                                          "成功打开数据填报-汇总统计页，且站点列表存在")
             utils.g_logger.info("数据填报-汇总统计页显示正常")
             sheet.append(["数据填报-汇总统计", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-汇总统计页显示异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-汇总统计", "异常"])
 
         # 数据填报任务审核页
@@ -224,8 +223,8 @@ class PddI5Iot():
                                          "成功打开数据填报-任务审核页，且指定元素存在")
             utils.g_logger.info("数据填报-任务审核页显示正常")
             sheet.append(["数据填报-汇总统计", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-任何审核页显示异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-汇总统计", "异常"])
 
         # 数据填报特色表分析页
@@ -239,8 +238,8 @@ class PddI5Iot():
                                          "成功打开数据填报-特色表分析页，且指定元素存在")
             utils.g_logger.info("数据填报-特色表分析页显示正常")
             sheet.append(["数据填报-特色表分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-特色表分析页显示异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-特色表分析", "异常"])
 
         # 执行”关闭所有“页面操作
@@ -253,7 +252,7 @@ class PddI5Iot():
             element.click()
             utils.g_logger.info("成功关闭所有页面")
         except Exception as e:
-            print(e)
+            utils.g_logger.info(e)
 
         # 系统管理报表权限管理页
         time.sleep(5)
@@ -269,8 +268,8 @@ class PddI5Iot():
                                          "成功打开报表权限管理页，且站点列表存在")
             utils.g_logger.info("系统管理-报表权限管理页显示正常")
             sheet.append(["系统管理-报表权限管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-报表权限管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-报表权限管理", "异常"])
 
         # 系统管理帮助管理页
@@ -329,8 +328,8 @@ class PddI5Iot():
                                          "成功打开系统管理-用户管理页，且指定元素存在")
             utils.g_logger.info("系统管理-用户管理页显示正常")
             sheet.append(["系统管理-用户管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-用户管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-用户管理", "异常"])
 
         # 系统管理权限管理页
@@ -446,8 +445,8 @@ class PddI5Iot():
                                          "成功打开系统管理-填报任务设置页，且指定元素存在")
             utils.g_logger.info("系统管理-填报任务设置页显示正常")
             sheet.append(["系统管理-填报任务设置", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-填报任务设置页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-填报任务设置", "异常"])
 
         # 系统管理专业分析配置页
@@ -462,8 +461,8 @@ class PddI5Iot():
 
             utils.g_logger.info("系统管理-专业分析配置页显示正常")
             sheet.append(["系统管理-专业分析配置", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-专业分析配置页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-专业分析配置", "异常"])
 
         # 系统管理定时任务管理页
@@ -580,8 +579,8 @@ class PddI5Iot():
                                          "成功打开物联网-工作平台页，且指定元素存在")
             utils.g_logger.info("物联网-工作平台页显示正常")
             sheet.append(["物联网-工作平台", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-工作平台页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-工作平台", "异常"])
 
         # 物联网-监测点分布页面
@@ -593,8 +592,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开监测点分布页面，且指定元素存在")
             utils.g_logger.info("物联网-监测点分布显示正常")
             sheet.append(["物联网-监测点分布", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-监测点分布异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-监测点分布", "异常"])
 
         # 物联网-设备分布页面
@@ -607,8 +606,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开设备分布页面，且指定元素存在")
             utils.g_logger.info("物联网-设备分布显示正常")
             sheet.append(["物联网-设备分布", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-设备分布异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-设备分布", "异常"])
 
         # 物联网-环境气象-趋势分析
@@ -622,8 +621,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开环境气象-趋势分析页面，且指定元素存在")
             utils.g_logger.info("环境气象-趋势分析显示正常")
             sheet.append(["环境气象-趋势分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("环境气象-趋势分析异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["环境气象-趋势分析", "异常"])
 
         # 物联网-环境气象-实时数据列表
@@ -635,8 +634,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开环境气象-实时数据列表页面，且指定元素存在")
             utils.g_logger.info("环境气象-实时数据列表显示正常")
             sheet.append(["环境气象-实时数据列表", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("环境气象-实时数据列表异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["环境气象-实时数据列表", "异常"])
 
         # 物联网-环境气象-实时数据统计
@@ -648,8 +647,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开环境气象-实时数据统计页面，且指定元素存在")
             utils.g_logger.info("环境气象-实时数据统计显示正常")
             sheet.append(["环境气象-实时数据统计", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("环境气象-实时数据统计异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["环境气象-实时数据统计", "异常"])
 
         # 物联网-环境气象-逐日数据统计
@@ -661,8 +660,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开环境气象-逐日数据统计页面，且指定元素存在")
             utils.g_logger.info("环境气象-逐日数据统计显示正常")
             sheet.append(["环境气象-逐日数据统计", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("环境气象-逐日数据统计异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["环境气象-逐日数据统计", "异常"])
 
         # 物联网-环境气象-逐日数据列表
@@ -677,8 +676,8 @@ class PddI5Iot():
                                          "成功打开环境气象-逐日数据列表页，且站点列表存在")
             utils.g_logger.info("环境气象-逐日数据列表显示正常")
             sheet.append(["环境气象-逐日数据列表", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("环境气象-逐日数据列表异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["环境气象-逐日数据列表", "异常"])
 
         # 性诱监测-性诱数据分析
@@ -692,8 +691,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开性诱监测-性诱数据分析页面，且指定元素存在")
             utils.g_logger.info("性诱监测-性诱数据分析显示正常")
             sheet.append(["性诱监测-性诱数据分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("性诱监测-性诱数据分析异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["性诱监测-性诱数据分析", "异常"])
 
         # 性诱监测-数据统计列表
@@ -706,8 +705,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开性诱监测-数据统计列表页面，且指定元素存在")
             utils.g_logger.info("性诱监测-数据统计列表显示正常")
             sheet.append(["性诱监测-数据统计列表", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("性诱监测-数据统计列表异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["性诱监测-数据统计列表", "异常"])
 
         # 性诱监测-性诱数据统计
@@ -721,8 +720,8 @@ class PddI5Iot():
                                          "成功打开报表权限管理页，且站点列表存在")
             utils.g_logger.info("性诱监测-性诱数据统计显示正常")
             sheet.append(["性诱监测-性诱数据统计", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("性诱监测-性诱数据统计异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["性诱监测-性诱数据统计", "异常"])
 
         # 性诱监测-趋势分析
@@ -730,7 +729,7 @@ class PddI5Iot():
                                  "//div[@class='el-submenu__title']//span[text()='性诱监测']/parent::div/parent::li//li[text()='趋势分析 ']").click()
         try:
             time.sleep(3)
-            self.driver.find_element(By.XPATH, "//div[@id='orgboxzTree']//i[@class='el-icon-arrow-down']").click()
+            self.driver.find_element(By.XPATH, "//div[@id='orgboxzTree']").click()
             orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, "//ul[starts-with(@id,'orgTree') and @class='ztree']")))
             unittest.TestCase.assertTrue(orgnization_tree_element is not None,
@@ -740,8 +739,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开性诱监测-趋势分析页面，且作物类型选项存在")
             utils.g_logger.info("性诱监测-趋势分析显示正常")
             sheet.append(["性诱监测-趋势分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("性诱监测-趋势分析异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["性诱监测-趋势分析", "异常"])
 
         # 灯诱监测-灯诱数据分析页
@@ -755,8 +754,8 @@ class PddI5Iot():
                                          "成功打开物联网-灯诱监测-灯诱数据分析页，且指定元素存在")
             utils.g_logger.info("物联网-灯诱监测-灯诱数据分析页显示正常")
             sheet.append(["物联网-灯诱监测-灯诱数据分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-灯诱监测-灯诱数据分析页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-灯诱监测-灯诱数据分析", "异常"])
 
         # 灯诱监测-数据统计列表
@@ -770,8 +769,8 @@ class PddI5Iot():
                                          "成功打开物联网-灯诱监测-数据统计列表页，且指定元素存在")
             utils.g_logger.info("物联网-灯诱监测-数据统计列表页显示正常")
             sheet.append(["物联网-灯诱监测-数据统计列表", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-灯诱监测-数据统计列表页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-灯诱监测-数据统计列表", "异常"])
 
         # 灯诱监测-灯诱图片展示
@@ -789,8 +788,8 @@ class PddI5Iot():
                                          "成功打开物联网-灯诱监测-灯诱图片展示页，且图片元素存在")
             utils.g_logger.info("物联网-灯诱监测-灯诱图片展示页显示正常")
             sheet.append(["物联网-灯诱监测-灯诱图片展示", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-灯诱监测-灯诱图片展示页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-灯诱监测-灯诱图片展示", "异常"])
 
         # 灯诱监测-灯诱识别结果统计
@@ -805,8 +804,8 @@ class PddI5Iot():
                                          "成功打开物联网-灯诱监测-灯诱识别结果统计页，且虫害类型选项存在")
             utils.g_logger.info("物联网-灯诱监测-灯诱识别结果统计页显示正常")
             sheet.append(["物联网-灯诱监测-灯诱识别结果统计", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-灯诱监测-灯诱识别结果统计页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-灯诱监测-灯诱识别结果统计", "异常"])
 
         # 灯诱监测-趋势分析
@@ -821,8 +820,8 @@ class PddI5Iot():
                                          "成功打开物联网-灯诱监测-趋势分析页，且虫害类型选项存在")
             utils.g_logger.info("物联网-灯诱监测-趋势分析页显示正常")
             sheet.append(["物联网-灯诱监测-趋势分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-灯诱监测-趋势分析页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-灯诱监测-趋势分析", "异常"])
 
         # 病害监测-马铃薯晚疫病页
@@ -837,8 +836,8 @@ class PddI5Iot():
                                          "成功打开物联网-病害监测-马铃薯晚疫病页，且病害分布图图例存在")
             utils.g_logger.info("物联网-病害监测-马铃薯晚疫病页显示正常")
             sheet.append(["物联网-病害监测-马铃薯晚疫病", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-病害监测-马铃薯晚疫病页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-病害监测-马铃薯晚疫病", "异常"])
 
         # 病害监测-小麦赤霉病页
@@ -851,8 +850,8 @@ class PddI5Iot():
                                          "成功打开物联网-病害监测-小麦赤霉病页，且病害分布图图例存在")
             utils.g_logger.info("物联网-病害监测-小麦赤霉病页显示正常")
             sheet.append(["物联网-病害监测-小麦赤霉病", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-病害监测-小麦赤霉病页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-病害监测-小麦赤霉病", "异常"])
 
         # 病害监测-孢子监测
@@ -865,8 +864,8 @@ class PddI5Iot():
                                          "成功打开物联网-病害监测-孢子监测页，且孢子图片存在")
             utils.g_logger.info("物联网-病害监测-孢子监测页显示正常")
             sheet.append(["物联网-病害监测-孢子监测", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-病害监测-孢子监测页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-病害监测-孢子监测", "异常"])
 
         # 关闭其他页面
@@ -884,7 +883,7 @@ class PddI5Iot():
             print(e)
 
         # 虫量对比分析页
-        time.sleep(5)
+        time.sleep(3)
         self.driver.find_element(By.XPATH, "//span[text()='虫量对比分析']").click()
         try:
             time.sleep(8)
@@ -895,8 +894,8 @@ class PddI5Iot():
                                          "成功打开物联网-虫量对比分析页，且虫害类型选项存在")
             utils.g_logger.info("物联网-虫量对比分析页显示正常")
             sheet.append(["物联网-虫量对比分析", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-虫量对比分析页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-虫量对比分析", "异常"])
 
         # 物联网-物联网管理-设备管理页
@@ -910,8 +909,8 @@ class PddI5Iot():
                                          "成功打开物联网-物联网管理-设备管理页，且指定元素存在")
             utils.g_logger.info("物联网-物联网管理-设备管理页显示正常")
             sheet.append(["物联网-物联网管理-设备管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-物联网管理-设备管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-物联网管理-设备管理", "异常"])
 
         # 物联网-物联网管理-监测点管理页
@@ -924,8 +923,8 @@ class PddI5Iot():
                                          "成功打开物联网-物联网管理-监测点管理页，且指定元素存在")
             utils.g_logger.info("物联网-物联网管理-监测点管理页显示正常")
             sheet.append(["物联网-物联网管理-监测点管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-物联网管理-监测点管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-物联网管理-监测点管理", "异常"])
 
         # 物联网-视频监控-视频监控分布
@@ -941,8 +940,8 @@ class PddI5Iot():
                                          "成功打开物联网-视频监控分布页，且站点列表存在")
             utils.g_logger.info("物联网-视频监控-视频监控分布页显示正常")
             sheet.append(["物联网-视频监控-视频监控分布", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-视频监控-视频监控分布页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-视频监控-视频监控分布", "异常"])
 
         # 物联网-视频监控-视频图片展示
@@ -959,8 +958,8 @@ class PddI5Iot():
                                          "成功打开物联网-视频监控-视频图片展示页，且图片元素存在")
             utils.g_logger.info("物联网-视频监控-视频图片展示页显示正常")
             sheet.append(["物联网-视频监控-视频图片展示", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("物联网-视频监控-视频图片展示页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["物联网-视频监控-视频图片展示", "异常"])
 
         # 关闭所有页面
@@ -974,6 +973,46 @@ class PddI5Iot():
             utils.g_logger.info("成功关闭所有页面")
         except Exception as e:
             print(e)
+
+        # 模型预警页面
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//div[starts-with(@class,'navi-item')][text()='模型预警 ']").click()
+        try:
+            time.sleep(5)
+            self.driver.find_element(By.XPATH, "//label[text()='模型名称']/following-sibling::div//input").click()
+            element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(
+                (By.XPATH, "//div[@x-placement]//ul[@class='el-scrollbar__view el-select-dropdown__list']/li[1]")))
+            unittest.TestCase.assertTrue(element is not None,
+                                         "成功打开模型预警页，且指定元素存在")
+            utils.g_logger.info("模型预警页显示正常")
+            sheet.append(["模型预警", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["模型预警", "异常"])
+
+        # 数据分析-综合分析页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//div[starts-with(@class,'navi-item')][text()='数据分析 ']").click()
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@role='radiogroup']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开数据分析-综合分析页，且指定元素存在")
+            select_date_element = self.driver.find_element(By.XPATH, '//input[@placeholder="请选择日期"]')
+            select_date_element.clear()
+            select_date_element.send_keys('2024-10-08')
+            # 模拟按下键盘回车键
+            select_date_element.send_keys(Keys.RETURN)
+
+            time.sleep(3)
+            chart_element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//div[text()=' 当前发生面积与常年对比 ']/parent::div//canvas")))
+            unittest.TestCase.assertTrue(chart_element is not None, "成功打开数据分析-综合分析页，且指定元素存在")
+            utils.g_logger.info("数据分析-综合分析页显示正常")
+            sheet.append(["数据分析-综合分析", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据分析-综合分析", "异常"])
 
         # 调整列宽
         for col in sheet.columns:
@@ -1024,8 +1063,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(element is not None, "登录成功，成功打开首页，且指定元素存在")
             utils.g_logger.info(f"登录成功，成功打开首页")
             sheet.append(["首页", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info(f"首页元素'全年任务数量'不存在")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["首页", "异常"])
 
         # 数据填报工作平台页
@@ -1036,8 +1075,8 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(element is not None, "成功打开数据填报工作平台，且指定元素存在")
             utils.g_logger.info("数据填报-工作平台页显示正常")
             sheet.append(["数据填报-工作平台", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("数据填报-工作平台页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["数据填报-工作平台", "异常"])
 
         # 调整列宽
