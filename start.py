@@ -1193,7 +1193,7 @@ class PddI5Iot():
 
 if __name__ == '__main__':
     p = PddI5Iot()
-    # 广西省系统页面巡检
+    # 省级系统页面巡检
     p.test_guangXi()
     # 将所有巡检结果导出excel文件
     p.export_excel()
