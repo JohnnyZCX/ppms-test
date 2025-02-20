@@ -668,7 +668,8 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH, "//li[text()='逐日数据列表 ']").click()
         try:
             time.sleep(8)
-            self.driver.find_element(By.XPATH, "//label[text()='站点']/following-sibling::div/div[@id='orgboxzTree']").click()
+            self.driver.find_element(By.XPATH,
+                                     "//label[text()='站点']/following-sibling::div/div[@id='orgboxzTree']").click()
             orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
                 (By.XPATH, "//ul[starts-with(@id,'orgTree') and @class='ztree']//a[@title='广西壮族自治区']")))
             unittest.TestCase.assertTrue(orgnization_tree_element is not None,
@@ -900,6 +901,8 @@ class PddI5Iot():
         # 物联网-物联网管理-设备管理页
         self.driver.find_element(By.XPATH, "//span[@slot='title' and text()='物联网管理']").click()
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='设备管理 ']").click()
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='设备管理 ']").click()
         try:
             time.sleep(8)
             element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
@@ -1062,8 +1065,9 @@ class PddI5Iot():
         try:
             time.sleep(5)
             self.driver.find_element(By.XPATH, "//div[@class='report-selector']").click()
-            elements = WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located((By.XPATH, "//img[contains(@src,'/upload/specialtype/')]")))
-            unittest.TestCase.assertTrue(elements is not None,"成功打开数据分析-自定义分析页，且指定元素存在")
+            elements = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//img[contains(@src,'/upload/specialtype/')]")))
+            unittest.TestCase.assertTrue(elements is not None, "成功打开数据分析-自定义分析页，且指定元素存在")
             utils.g_logger.info("数据分析-自定义分析页显示正常")
             sheet.append(["数据分析-自定义分析", "正常"])
         except Exception as e:
@@ -1075,8 +1079,9 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH, "//span[text()='数据报告']").click()
         try:
             time.sleep(5)
-            element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located((By.XPATH, "//label[text()='周期']/following-sibling::div/div[@role='radiogroup']")))
-            unittest.TestCase.assertTrue(element is not None,"成功打开数据分析-数据报告页，且指定元素存在")
+            element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(
+                (By.XPATH, "//label[text()='周期']/following-sibling::div/div[@role='radiogroup']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开数据分析-数据报告页，且指定元素存在")
             utils.g_logger.info("数据分析-数据报告页显示正常")
             sheet.append(["数据分析-数据报告", "正常"])
         except Exception as e:
@@ -1100,13 +1105,396 @@ class PddI5Iot():
         try:
             time.sleep(5)
             elements = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//div[@class='title'][text()='病虫害知识库']/parent::div/following-sibling::div//img")))
+                EC.presence_of_all_elements_located(
+                    (By.XPATH, "//div[@class='title'][text()='病虫害知识库']/parent::div/following-sibling::div//img")))
             unittest.TestCase.assertTrue(elements is not None, "成功打开知识库-工作平台页，且指定元素存在")
             utils.g_logger.info("知识库-工作平台页显示正常")
             sheet.append(["知识库-工作平台", "正常"])
         except Exception as e:
             utils.g_logger.info(e)
             sheet.append(["知识库-工作平台", "异常"])
+
+        # 知识库-病虫害知识库-知识浏览页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='病虫害知识库']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='病虫害知识库']/parent::div/following-sibling::ul//li[text()='知识浏览 ']").click()
+        try:
+            time.sleep(5)
+            elements = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//div[@class='el-image img']/img")))
+            unittest.TestCase.assertTrue(elements is not None, "成功打开知识库-病虫害知识库-知识浏览页，且指定元素存在")
+            utils.g_logger.info("知识库-病虫害知识库-知识浏览页显示正常")
+            sheet.append(["知识库-病虫害知识库-知识浏览", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-病虫害知识库-知识浏览", "异常"])
+
+        # 知识库-病虫害知识库-知识维护页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='病虫害知识库']/parent::div/following-sibling::ul//li[text()='知识维护 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='修改时间']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-病虫害知识库-知识维护页，且指定元素存在")
+            utils.g_logger.info("知识库-病虫害知识库-知识维护页显示正常")
+            sheet.append(["知识库-病虫害知识库-知识维护", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-病虫害知识库-知识维护", "异常"])
+
+        # 植保知识库-知识浏览页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='植保知识库']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='植保知识库']/parent::div/following-sibling::ul//li[text()='知识浏览 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@role='radiogroup']//span[text()='植物检疫']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-植保知识库-知识浏览页，且指定元素存在")
+            utils.g_logger.info("知识库-植保知识库-知识浏览页显示正常")
+            sheet.append(["知识库-植保知识库-知识浏览", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-植保知识库-知识浏览", "异常"])
+
+        # 植保知识库-知识审核页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='植保知识库']/parent::div/following-sibling::ul//li[text()='知识审核 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='发布时间']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-植保知识库-知识审核页，且指定元素存在")
+            utils.g_logger.info("知识库-植保知识库-知识审核页显示正常")
+            sheet.append(["知识库-植保知识库-知识审核", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-植保知识库-知识审核", "异常"])
+
+        # 植知识库-知识上传页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='植保知识库']/parent::div/following-sibling::ul//li[text()='知识上传 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='发布时间']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-植保知识库-知识上传页，且指定元素存在")
+            utils.g_logger.info("知识库-植保知识库-知识上传页显示正常")
+            sheet.append(["知识库-植保知识库-知识上传", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-植保知识库-知识上传", "异常"])
+
+        # 资料库页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='资料库']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='目录']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-资料库页，且指定元素存在")
+            utils.g_logger.info("知识库-资料库页显示正常")
+            sheet.append(["知识库-资料库", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-资料库", "异常"])
+
+        # 作物知识库-知识浏览
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='作物知识库']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='作物知识库']/parent::div/following-sibling::ul//li[text()='知识浏览 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@role='radiogroup']//span[text()='粮食作物']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-作物知识库-知识浏览页，且指定元素存在")
+            image_elements = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//div[@id='tupianshow']//img")))
+            unittest.TestCase.assertTrue(image_elements is not None,
+                                         "成功打开知识库-作物知识库-知识浏览页，且指定元素存在")
+            utils.g_logger.info("知识库-作物知识库-知识浏览页显示正常")
+            sheet.append(["知识库-作物知识库-知识浏览", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-作物知识库-知识浏览", "异常"])
+
+        # 作物知识库-知识维护
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='作物知识库']/parent::div/following-sibling::ul//li[text()='知识维护 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='中文名']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开知识库-作物知识库-知识维护页，且指定元素存在")
+            utils.g_logger.info("知识库-作物知识库-知识维护页显示正常")
+            sheet.append(["知识库-作物知识库-知识维护", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["知识库-作物知识库-知识维护", "异常"])
+
+        # 关闭所有页面
+        self.driver.find_element(By.XPATH, "//i[@class='el-icon-circle-close']").click()
+        try:
+            element = WebDriverWait(self.driver, 10).until(
+                EC.element_to_be_clickable(
+                    (By.XPATH, "//ul[@class='el-dropdown-menu el-popper']/li[text()='关闭所有']")))
+            element.click()
+            utils.g_logger.info("成功关闭所有页面")
+        except Exception as e:
+            utils.g_logger.error(e)
+
+        # 办公应用-工作平台页
+        self.driver.find_element(By.XPATH, "//div[starts-with(@class,'navi-item')][text()='办公应用 ']").click()
+        try:
+            time.sleep(5)
+            elements = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_all_elements_located(
+                    (By.XPATH,
+                     "//div[@class='title'][text()='新闻管理']/parent::div/following-sibling::div/div[@class='content']")))
+            unittest.TestCase.assertTrue(elements is not None, "成功打开办公应用-工作平台页，且指定元素存在")
+            utils.g_logger.info("办公应用-工作平台页显示正常")
+            sheet.append(["办公应用-工作平台", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-工作平台", "异常"])
+
+        # 办公应用-文件收发管理-收件箱页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='文件收发管理']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='文件收发管理']/parent::div/following-sibling::ul//li[text()='收件箱 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='收件时间']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-文件收发管理-收件箱页，且指定元素存在")
+            utils.g_logger.info("办公应用-文件收发管理-收件箱页显示正常")
+            sheet.append(["办公应用-文件收发管理-收件箱", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-文件收发管理-收件箱", "异常"])
+
+        # 办公应用-文件收发管理-草稿箱页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='文件收发管理']/parent::div/following-sibling::ul//li[text()='草稿箱 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='收件单位']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-文件收发管理-草稿箱页，且指定元素存在")
+            utils.g_logger.info("办公应用-文件收发管理-草稿箱页显示正常")
+            sheet.append(["办公应用-文件收发管理-草稿箱", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-文件收发管理-草稿箱", "异常"])
+
+        # 办公应用-文件收发管理-发件箱页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='文件收发管理']/parent::div/following-sibling::ul//li[text()='发件箱 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='发送时间']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-文件收发管理-发件箱页，且指定元素存在")
+            utils.g_logger.info("办公应用-文件收发管理-发件箱页显示正常")
+            sheet.append(["办公应用-文件收发管理-发件箱", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-文件收发管理-发件箱", "异常"])
+
+        # 病虫害情报-情报管理页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='病虫害情报']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='病虫害情报']/parent::div/following-sibling::ul//li[text()='情报管理 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//label[text()='情报类型']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-病虫害情报-情报管理页，且指定元素存在")
+            utils.g_logger.info("办公应用-病虫害情报-情报管理页显示正常")
+            sheet.append(["办公应用-病虫害情报-情报管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-病虫害情报-情报管理", "异常"])
+
+        # 病虫害情报-情报库检索页
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='病虫害情报']/parent::div/following-sibling::ul//li[text()='情报库检索 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//label[text()='关键词']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-病虫害情报-情报库检索页，且指定元素存在")
+            utils.g_logger.info("办公应用-病虫害情报-情报库检索页显示正常")
+            sheet.append(["办公应用-病虫害情报-情报库检索", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-病虫害情报-情报库检索", "异常"])
+
+        # 病虫害情报-情报统计页
+        time.sleep(5)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='病虫害情报']/parent::div/following-sibling::ul//li[text()='情报统计 ']").click()
+        try:
+            time.sleep(5)
+            elements = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_any_elements_located(
+                    (By.XPATH, "//span[@class='el-radio-button__inner'][contains(text(),'统计')]")))
+            unittest.TestCase.assertTrue(elements is not None, "成功打开办公应用-病虫害情报-情报统计页，且指定元素存在")
+            utils.g_logger.info("办公应用-病虫害情报-情报统计页显示正常")
+            sheet.append(["办公应用-病虫害情报-情报统计", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-病虫害情报-情报统计", "异常"])
+
+        # 新闻管理-新闻浏览页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='新闻管理']").click()
+        self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='新闻浏览 ']").click()
+        try:
+            time.sleep(5)
+            elements = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_all_elements_located((By.XPATH, "//h2[@class='zbtitle']")))
+            unittest.TestCase.assertTrue(elements is not None, "成功打开办公应用-新闻管理-新闻浏览页，且指定元素存在")
+            utils.g_logger.info("办公应用-新闻管理-新闻浏览页显示正常")
+            sheet.append(["办公应用-新闻管理-新闻浏览", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-新闻管理-新闻浏览", "异常"])
+
+        # 新闻管理-新闻上传页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='新闻上传 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//div[@class='cell'][text()='标题']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-新闻管理-新闻浏览页，且指定元素存在")
+            utils.g_logger.info("办公应用-新闻管理-新闻上传页显示正常")
+            sheet.append(["办公应用-新闻管理-新闻上传", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-新闻管理-新闻上传", "异常"])
+
+        # 视频会议-会议管理页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='视频会议']").click()
+        self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='会议管理 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='参会人员']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-视频会议-会议管理页，且指定元素存在")
+            utils.g_logger.info("办公应用-视频会议-会议管理页显示正常")
+            sheet.append(["办公应用-视频会议-会议管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-视频会议-会议管理", "异常"])
+
+        # 视频会议-我的会议页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='我的会议 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located(
+                    (By.XPATH, "//label[@class='el-form-item__label'][text()='会议状态']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-视频会议-我的会议页，且指定元素存在")
+            utils.g_logger.info("办公应用-视频会议-我的会议页显示正常")
+            sheet.append(["办公应用-视频会议-我的会议", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-视频会议-我的会议", "异常"])
+
+        # 通知公告-公告管理页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='通知公告']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='通知公告']/parent::div/following-sibling::ul//li[text()='公告管理 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='公告名称']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-通知公告-公告管理页，且指定元素存在")
+            utils.g_logger.info("办公应用-通知公告-公告管理页显示正常")
+            sheet.append(["办公应用-通知公告-公告管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-通知公告-公告管理", "异常"])
+
+        # 通知公告-公告查阅页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='通知公告']/parent::div/following-sibling::ul//li[text()='公告查阅 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='公告名称']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-通知公告-公告查阅页，且指定元素存在")
+            utils.g_logger.info("办公应用-通知公告-公告查阅页显示正常")
+            sheet.append(["办公应用-通知公告-公告查阅", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-通知公告-公告查阅", "异常"])
+
+        # 办公应用-工作总结页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='工作总结']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='总结标题']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-工作总结页，且指定元素存在")
+            utils.g_logger.info("办公应用-工作总结页显示正常")
+            sheet.append(["办公应用-工作总结", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-工作总结", "异常"])
+
+        # 办公应用-业务考核-报送统计页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, "//span[text()='业务考核']").click()
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='业务考核']/parent::div/following-sibling::ul//li[text()='报送统计 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH,
+                                                  "//th[contains(@class,'     el-table__cell')]//div[@class='cell'][text()='《情报》统计']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-业务考核-报送统计页，且指定元素存在")
+            utils.g_logger.info("办公应用-业务考核-报送统计页显示正常")
+            sheet.append(["办公应用-业务考核-报送统计", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-业务考核-报送统计", "异常"])
+
+        # 办公应用-业务考核-考核统计页
+        time.sleep(3)
+        self.driver.find_element(By.XPATH,
+                                 "//span[text()='业务考核']/parent::div/following-sibling::ul//li[text()='考核统计 ']").click()
+        try:
+            time.sleep(5)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.visibility_of_element_located((By.XPATH,
+                                                  "//th[contains(@class,'     is-leaf el-table__cell')]//div[@class='cell'][text()='总分']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-业务考核-考核统计页，且指定元素存在")
+            utils.g_logger.info("办公应用-业务考核-考核统计页显示正常")
+            sheet.append(["办公应用-业务考核-考核统计", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["办公应用-业务考核-考核统计", "异常"])
 
         # 调整列宽
         for col in sheet.columns:
