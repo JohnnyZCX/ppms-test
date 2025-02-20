@@ -1,3 +1,4 @@
+import sys
 import time
 import unittest
 
@@ -668,11 +669,9 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH, "//li[text()='逐日数据列表 ']").click()
         try:
             time.sleep(8)
-            self.driver.find_element(By.XPATH,
-                                     "//label[text()='站点']/following-sibling::div/div[@id='orgboxzTree']").click()
-            orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
-                (By.XPATH, "//ul[starts-with(@id,'orgTree') and @class='ztree']//a[@title='广西壮族自治区']")))
-            unittest.TestCase.assertTrue(orgnization_tree_element is not None,
+            wendu_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
+                (By.XPATH, "//th[contains(@class,'     is-leaf el-table__cell')]//div[@class='cell'][text()='平均气温（°C）']")))
+            unittest.TestCase.assertTrue(wendu_element is not None,
                                          "成功打开环境气象-逐日数据列表页，且站点列表存在")
             utils.g_logger.info("环境气象-逐日数据列表显示正常")
             sheet.append(["环境气象-逐日数据列表", "正常"])
@@ -809,6 +808,7 @@ class PddI5Iot():
             sheet.append(["物联网-灯诱监测-灯诱识别结果统计", "异常"])
 
         # 灯诱监测-趋势分析
+        time.sleep(5)
         self.driver.find_element(By.XPATH,
                                  "//li[@role='menuitem'][text()='灯诱识别结果统计 ']/parent::div/following-sibling::div").click()
         try:
@@ -825,6 +825,7 @@ class PddI5Iot():
             sheet.append(["物联网-灯诱监测-趋势分析", "异常"])
 
         # 病害监测-马铃薯晚疫病页
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[@slot='title' and text()='病害监测']").click()
         time.sleep(4)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='马铃薯晚疫病 ']").click()
@@ -841,6 +842,7 @@ class PddI5Iot():
             sheet.append(["物联网-病害监测-马铃薯晚疫病", "异常"])
 
         # 病害监测-小麦赤霉病页
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='小麦赤霉病 ']").click()
         try:
             time.sleep(5)
@@ -855,6 +857,7 @@ class PddI5Iot():
             sheet.append(["物联网-病害监测-小麦赤霉病", "异常"])
 
         # 病害监测-孢子监测
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='孢子监测 ']").click()
         try:
             time.sleep(10)
@@ -899,6 +902,7 @@ class PddI5Iot():
             sheet.append(["物联网-虫量对比分析", "异常"])
 
         # 物联网-物联网管理-设备管理页
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[@slot='title' and text()='物联网管理']").click()
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='设备管理 ']").click()
         time.sleep(3)
@@ -916,6 +920,7 @@ class PddI5Iot():
             sheet.append(["物联网-物联网管理-设备管理", "异常"])
 
         # 物联网-物联网管理-监测点管理页
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='监测点管理 ']").click()
         try:
             time.sleep(8)
@@ -930,6 +935,7 @@ class PddI5Iot():
             sheet.append(["物联网-物联网管理-监测点管理", "异常"])
 
         # 物联网-视频监控-视频监控分布
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[@slot='title' and text()='视频监控']").click()
         time.sleep(3)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='视频监控分布 ']").click()
@@ -947,6 +953,7 @@ class PddI5Iot():
             sheet.append(["物联网-视频监控-视频监控分布", "异常"])
 
         # 物联网-视频监控-视频图片展示
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='视频图片展示 ']").click()
         try:
             time.sleep(8)
@@ -1360,8 +1367,9 @@ class PddI5Iot():
             sheet.append(["办公应用-病虫害情报-情报统计", "异常"])
 
         # 新闻管理-新闻浏览页
-        time.sleep(3)
-        self.driver.find_element(By.XPATH, "//span[text()='新闻管理']").click()
+        time.sleep(5)
+        self.driver.find_element(By.XPATH, "//span[text()='新闻管理']/following-sibling::i").click()
+        time.sleep(2)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='新闻浏览 ']").click()
         try:
             time.sleep(5)
@@ -1375,7 +1383,7 @@ class PddI5Iot():
             sheet.append(["办公应用-新闻管理-新闻浏览", "异常"])
 
         # 新闻管理-新闻上传页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='新闻上传 ']").click()
         try:
             time.sleep(5)
@@ -1389,8 +1397,9 @@ class PddI5Iot():
             sheet.append(["办公应用-新闻管理-新闻上传", "异常"])
 
         # 视频会议-会议管理页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[text()='视频会议']").click()
+        time.sleep(2)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='会议管理 ']").click()
         try:
             time.sleep(5)
@@ -1404,7 +1413,7 @@ class PddI5Iot():
             sheet.append(["办公应用-视频会议-会议管理", "异常"])
 
         # 视频会议-我的会议页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='我的会议 ']").click()
         try:
             time.sleep(5)
@@ -1419,8 +1428,9 @@ class PddI5Iot():
             sheet.append(["办公应用-视频会议-我的会议", "异常"])
 
         # 通知公告-公告管理页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[text()='通知公告']").click()
+        time.sleep(2)
         self.driver.find_element(By.XPATH,
                                  "//span[text()='通知公告']/parent::div/following-sibling::ul//li[text()='公告管理 ']").click()
         try:
@@ -1435,7 +1445,7 @@ class PddI5Iot():
             sheet.append(["办公应用-通知公告-公告管理", "异常"])
 
         # 通知公告-公告查阅页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH,
                                  "//span[text()='通知公告']/parent::div/following-sibling::ul//li[text()='公告查阅 ']").click()
         try:
@@ -1450,7 +1460,7 @@ class PddI5Iot():
             sheet.append(["办公应用-通知公告-公告查阅", "异常"])
 
         # 办公应用-工作总结页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[text()='工作总结']").click()
         try:
             time.sleep(5)
@@ -1464,8 +1474,9 @@ class PddI5Iot():
             sheet.append(["办公应用-工作总结", "异常"])
 
         # 办公应用-业务考核-报送统计页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH, "//span[text()='业务考核']").click()
+        time.sleep(2)
         self.driver.find_element(By.XPATH,
                                  "//span[text()='业务考核']/parent::div/following-sibling::ul//li[text()='报送统计 ']").click()
         try:
@@ -1481,7 +1492,7 @@ class PddI5Iot():
             sheet.append(["办公应用-业务考核-报送统计", "异常"])
 
         # 办公应用-业务考核-考核统计页
-        time.sleep(3)
+        time.sleep(5)
         self.driver.find_element(By.XPATH,
                                  "//span[text()='业务考核']/parent::div/following-sibling::ul//li[text()='考核统计 ']").click()
         try:
@@ -1512,8 +1523,8 @@ class PddI5Iot():
     @utils.retry(MAX_TRIES)
     def test_huBei(self):
         # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
-        wb.create_sheet("湖北省", 0)
-        sheet = wb["湖北省"]
+        wb.create_sheet("湖北省病虫疫情信息调度指挥中心", 1)
+        sheet = wb["湖北省病虫疫情信息调度指挥中心"]
         # 写入表头
         headers = ["页面", "检测结果"]
         sheet.append(headers)
@@ -1750,3 +1761,4 @@ if __name__ == '__main__':
     p.test_guangXi()
     # 将所有巡检结果导出excel文件
     p.export_excel()
+
