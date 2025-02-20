@@ -35,8 +35,8 @@ class PddI5Iot():
     @utils.retry(MAX_TRIES)
     def test_guangXi(self):
         # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
-        wb.create_sheet("广西省", 0)
-        sheet = wb["广西省"]
+        wb.create_sheet("广西农作物病虫疫情信息调度指挥平台", 0)
+        sheet = wb["广西农作物病虫疫情信息调度指挥平台"]
         # 写入表头
         headers = ["页面", "检测结果"]
         sheet.append(headers)
@@ -283,8 +283,8 @@ class PddI5Iot():
                                          "成功打开帮助管理页，且指定元素存在")
             utils.g_logger.info("系统管理-帮助管理页显示正常")
             sheet.append(["系统管理-帮助管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-帮助管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-帮助管理", "异常"])
 
         # 系统管理工作平台页
@@ -298,8 +298,8 @@ class PddI5Iot():
                                          "成功打开系统管理-工作平台页，且指定元素存在")
             utils.g_logger.info("系统管理-工作平台页显示正常")
             sheet.append(["系统管理-工作平台", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-工作平台页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-工作平台", "异常"])
 
         # 系统管理机构管理页
@@ -313,8 +313,8 @@ class PddI5Iot():
                                          "成功打开系统管理-机构管理页，且指定元素存在")
             utils.g_logger.info("系统管理-机构管理页显示正常")
             sheet.append(["系统管理-机构管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-机构管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-机构管理", "异常"])"""
 
         # 系统管理用户管理页
@@ -343,8 +343,8 @@ class PddI5Iot():
                                          "成功打开系统管理-权限管理页，且指定元素存在")
             utils.g_logger.info("系统管理-权限管理页显示正常")
             sheet.append(["系统管理-权限管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-权限管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-权限管理", "异常"])
 
         # 系统管理菜单管理页
@@ -358,8 +358,8 @@ class PddI5Iot():
                                          "成功打开系统管理-菜单管理页，且指定元素存在")
             utils.g_logger.info("系统管理-菜单管理页显示正常")
             sheet.append(["系统管理-菜单管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-菜单管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-菜单管理", "异常"])
 
         # 系统管理字典表管理页
@@ -373,8 +373,8 @@ class PddI5Iot():
                                          "成功打开系统管理-字典表管理页，且指定元素存在")
             utils.g_logger.info("系统管理-字典表管理页显示正常")
             sheet.append(["系统管理-字典表管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-字典表管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-字典表管理", "异常"])
 
         # 系统管理日志管理登录日志页
@@ -388,8 +388,8 @@ class PddI5Iot():
                                          "成功打开系统管理-登录日志页，且指定元素存在")
             utils.g_logger.info("系统管理-登录日志页显示正常")
             sheet.append(["系统管理-登录日志", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-登录日志页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-登录日志", "异常"])
 
         # 系统管理日志管理操作日志页
@@ -402,8 +402,8 @@ class PddI5Iot():
                                          "成功打开系统管理-操作日志页，且指定元素存在")
             utils.g_logger.info("系统管理-操作日志页显示正常")
             sheet.append(["系统管理-操作日志", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-操作日志页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-操作日志", "异常"])
 
         # 系统管理日志管理上报日志页
@@ -416,8 +416,8 @@ class PddI5Iot():
                                          "成功打开系统管理-上报日志页，且指定元素存在")
             utils.g_logger.info("系统管理-上报日志页显示正常")
             sheet.append(["系统管理-上报日志", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-上报日志页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-上报日志", "异常"])
 
         # 系统管理日志管理同步日志页
@@ -430,8 +430,8 @@ class PddI5Iot():
                                          "成功打开系统管理-同步日志页，且指定元素存在")
             utils.g_logger.info("系统管理-同步日志页显示正常")
             sheet.append(["系统管理-同步日志", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-同步日志页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-同步日志", "异常"])"""
 
         # 系统管理填报任务设置页
@@ -476,8 +476,8 @@ class PddI5Iot():
                                          "成功打开系统管理-定时任务管理页，且指定元素存在")
             utils.g_logger.info("系统管理-定时任务管理页显示正常")
             sheet.append(["系统管理-定时任务管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-定时任务管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-定时任务管理", "异常"])
 
         # 系统管理定制报告页
@@ -491,8 +491,8 @@ class PddI5Iot():
                                          "成功打开系统管理-定制报告页，且指定元素存在")
             utils.g_logger.info("系统管理-定制报告页显示正常")
             sheet.append(["系统管理-定制报告", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-定制报告页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-定制报告", "异常"])
 
         # 系统管理预警阈值设置页
@@ -506,8 +506,8 @@ class PddI5Iot():
                                          "成功打开系统管理-预警阈值设置页，且指定元素存在")
             utils.g_logger.info("系统管理-预警阈值设置页显示正常")
             sheet.append(["系统管理-预警阈值设置", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-预警阈值设置页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-预警阈值设置", "异常"])
 
         # 系统管理模型管理页
@@ -521,8 +521,8 @@ class PddI5Iot():
                                          "成功打开系统管理-模型管理页，且指定元素存在")
             utils.g_logger.info("系统管理-模型管理页显示正常")
             sheet.append(["系统管理-模型管理", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-模型管理页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-模型管理", "异常"])
 
         # 系统管理县级用户关系绑定页
@@ -536,8 +536,8 @@ class PddI5Iot():
                                          "成功打开系统管理-县级用户关系绑定页，且指定元素存在")
             utils.g_logger.info("系统管理-县级用户关系绑定页显示正常")
             sheet.append(["系统管理-县级用户关系绑定", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-县级用户关系绑定页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-县级用户关系绑定", "异常"])
 
         # 系统管理系统更新日志页
@@ -551,8 +551,8 @@ class PddI5Iot():
                                          "成功打开系统管理-系统更新日志页，且指定元素存在")
             utils.g_logger.info("系统管理-系统更新日志页显示正常")
             sheet.append(["系统管理-系统更新日志", "正常"])
-        except NoSuchElementException:
-            utils.g_logger.info("系统管理-系统更新日志页异常")
+        except Exception as e:
+            utils.g_logger.info(e)
             sheet.append(["系统管理-系统更新日志", "异常"])"""
 
         # 关闭所有页面
