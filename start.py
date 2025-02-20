@@ -1631,11 +1631,12 @@ class PddI5Iot():
 
         # 项目管理-立项管理-项目档案页
         self.driver.find_element(By.XPATH,
-                                 "//li[contains(@class,'ivu-menu-item') and text()='项目档案']").click()  # 项目管理-项目档案
+                                 "//*[i[@data-v-36cafb69=''] and contains(text(), '立项管理')]").click()  # 项目管理-立项管理
+        self.driver.find_element(By.XPATH,
+                                 "//li[contains(@class,'ivu-menu-item') and text()='项目档案']").click()  # 立项管理-项目档案
 
         try:
             time.sleep(3)
-            self.driver.find_element(By.XPATH, "//i[@class='el-icon-arrow-down']").click()
             tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
             unittest.TestCase.assertTrue(tree_element is not None,
@@ -1652,7 +1653,6 @@ class PddI5Iot():
 
         try:
             time.sleep(3)
-            self.driver.find_element(By.XPATH, "//i[@class='el-icon-arrow-down']").click()
             tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
             unittest.TestCase.assertTrue(tree_element is not None,
@@ -1667,29 +1667,65 @@ class PddI5Iot():
                             "//*[i[@data-v-36cafb69=''] and contains(text(), '合同管理')]",
                             "//*[i[@data-v-36cafb69=''] and contains(text(), '资金管理')]",
                             ]
-        Xpath_Road_End = ['//input[contains(@class,"ivu-input") and @placeholder="起始时间"]'
-
-                          ]
         # 项目管理-招投标管理页
         self.driver.find_element(By.XPATH,
                                  Xpath_Road_Start[0]).click()  # 招投标管理
         try:
             time.sleep(5)
-            self.driver.find_element(By.XPATH, "//div[@id='reportboxTree']//i[@class='el-icon-arrow-down']").click()
             tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开项目管理-招投标管理页，且报表列表存在")
             self.driver.find_element(By.XPATH,
-                                     "//label[@class='ivu-form-item-label' and text()='建设单位']/following-sibling::div/div").click()
+                                     "//label[@class='ivu-form-item-label' and text()='建设单位']/following-sibling::div/div").click()  #点击建设单位选择框
             orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
-                (By.XPATH, "//ul[starts-with(@id,'orgTree') and @class='ztree']")))
+                (By.XPATH, "//div[@class='dropdown']")))  #建设单位站点
             unittest.TestCase.assertTrue(orgnization_tree_element is not None,
-                                         "成功打开数据填报-数据查询页，且站点列表存在")
+                                         "成功打开项目管理-招投标管理页，且站点列表存在")
             utils.g_logger.info("项目管理-招投标管理页显示正常")
             sheet.append(["项目管理-招投标管理", "正常"])
         except Exception as e:
             utils.g_logger.info(e)
             sheet.append(["项目管理-招投标管理", "异常"])
+
+        # 项目管理-合同管理页
+        self.driver.find_element(By.XPATH,
+                                 Xpath_Road_Start[1]).click()  # 合同管理
+        try:
+            time.sleep(5)
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
+            unittest.TestCase.assertTrue(tree_element is not None, "成功打开项目管理-招投标管理页，且报表列表存在")
+            self.driver.find_element(By.XPATH,
+                                     "//label[@class='ivu-form-item-label' and text()='建设单位']/following-sibling::div/div").click()  # 点击建设单位选择框
+            orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, "//div[@class='dropdown']")))  # 建设单位站点
+            unittest.TestCase.assertTrue(orgnization_tree_element is not None,
+                                         "成功打开项目管理-合同管理页，且站点列表存在")
+            utils.g_logger.info("项目管理-合同管理页显示正常")
+            sheet.append(["项目管理-合同管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["项目管理-合同管理", "异常"])
+
+        # 项目管理-资金管理页
+        self.driver.find_element(By.XPATH,
+                                 Xpath_Road_Start[2]).click()  # 资金管理管理
+        try:
+            time.sleep(5)
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
+            unittest.TestCase.assertTrue(tree_element is not None, "成功打开项目管理-招投标管理页，且报表列表存在")
+            self.driver.find_element(By.XPATH,
+                                     "//label[@class='ivu-form-item-label' and text()='建设单位']/following-sibling::div/div").click()  # 点击建设单位选择框
+            orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, "//div[@class='dropdown']")))  # 建设单位站点
+            unittest.TestCase.assertTrue(orgnization_tree_element is not None,
+                                         "成功打开项目管理-资金管理页，且站点列表存在")
+            utils.g_logger.info("项目管理-资金管理页显示正常")
+            sheet.append(["项目管理-资金管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["项目管理-资金管理", "异常"])
 
         # 调整列宽
         for col in sheet.columns:
