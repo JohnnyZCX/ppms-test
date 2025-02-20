@@ -1574,6 +1574,135 @@ class PddI5Iot():
             adjusted_width = (max_length + 8)
             sheet.column_dimensions[column].width = adjusted_width
 
+
+    # 广西草地贪夜蛾综合管理平台
+    @utils.retry(MAX_TRIES)
+    def test_guangXiTye(self):
+        # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
+        wb.create_sheet("广西草地贪夜蛾综合管理平台", 2)
+        sheet = wb["广西草地贪夜蛾综合管理平台"]
+        # 写入表头
+        headers = ["页面", "检测结果"]
+        sheet.append(headers)
+        username = input("广西草贪系统生产环境巡检开始\n请输入登录用户名：")
+        password = input("请输入登录密码：")
+        '''guangXi_cfg = cfg["guangXi"]
+        base_url = guangXi_cfg["baseUrl"]
+        username = guangXi_cfg["username"]
+        password = guangXi_cfg["password"]'''
+        self.driver.maximize_window()
+        # self.driver.get(base_url + "login")
+        self.driver.get("https://gxtye.pestiot.com")
+        self.driver.implicitly_wait(4)
+
+        # 登录
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入用户名"]').send_keys(username)
+        self.driver.find_element(By.XPATH, '//input[@type="password"]').send_keys(password)
+        yanzhengma_image = self.driver.find_element(By.XPATH, '//img[contains(@src,"/ppms/sys/user/getvalidatecode")]')
+        img_bytes = yanzhengma_image.screenshot_as_png
+        yzm = ddddocr.DdddOcr(show_ad=False).classification(img_bytes)
+        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入验证码"]').send_keys(yzm)
+        time.sleep(3)
+        self.driver.find_element(By.XPATH, '//button[@type="button"]//span[text()="登录"]').click()
+
+        # 首页全年任务数量元素校验
+        try:
+            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
+                (By.XPATH,
+                 '//div[@class="ivu-col ivu-col-span-xs-24 ivu-col-span-sm-12 ivu-col-span-md-6"][1]')))  # 定位全年任务数量
+            unittest.TestCase.assertTrue(element is not None, "登录成功，成功打开首页，且指定元素存在")
+            utils.g_logger.info(f"登录成功，成功打开首页")
+            sheet.append(["首页", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["首页", "异常"])
+
+        # 项目管理-立项管理-项目组管理页
+        self.driver.find_element(By.XPATH, "//ul[contains(@class,'navli ivu-menu')]//li[2]").click()  # 项目管理
+        try:
+            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
+                (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
+            unittest.TestCase.assertTrue(element is not None, "成功打开项目管理-立项管理-项目组管理，且指定元素存在")
+            utils.g_logger.info("项目管理-立项管理-项目组管理页显示正常")
+            sheet.append(["项目管理-立项管理-项目组管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["项目管理-立项管理-项目组管理", "异常"])
+
+        # 项目管理-立项管理-项目档案页
+        self.driver.find_element(By.XPATH,
+                                 "//li[contains(@class,'ivu-menu-item') and text()='项目档案']").click()  # 项目管理-项目档案
+
+        try:
+            time.sleep(3)
+            self.driver.find_element(By.XPATH, "//i[@class='el-icon-arrow-down']").click()
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
+            unittest.TestCase.assertTrue(tree_element is not None,
+                                         "成功打开项目管理-立项管理-项目档案页，且指定元素存在")
+            utils.g_logger.info("项目管理-立项管理-项目档案页显示正常")
+            sheet.append(["项目管理-立项管理-项目档案", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["项目管理-立项管理-项目档案", "异常"])
+
+        # 项目管理-立项管理-立项审核页
+        self.driver.find_element(By.XPATH,
+                                 "//li[contains(@class,'ivu-menu-item') and text()='立项审核']").click()  # 项目管理-立项审核
+
+        try:
+            time.sleep(3)
+            self.driver.find_element(By.XPATH, "//i[@class='el-icon-arrow-down']").click()
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
+            unittest.TestCase.assertTrue(tree_element is not None,
+                                         "成功打开项目管理-立项管理-项目档案页，且指定元素存在")
+            utils.g_logger.info("项目管理-立项管理-立项审核页显示正常")
+            sheet.append(["项目管理-立项管理-立项审核", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["项目管理-立项管理-立项审核", "异常"])
+
+        Xpath_Road_Start = ["//*[i[@data-v-36cafb69=''] and contains(text(), '招投标管理')]",
+                            "//*[i[@data-v-36cafb69=''] and contains(text(), '合同管理')]",
+                            "//*[i[@data-v-36cafb69=''] and contains(text(), '资金管理')]",
+                            ]
+        Xpath_Road_End = ['//input[contains(@class,"ivu-input") and @placeholder="起始时间"]'
+
+                          ]
+        # 项目管理-招投标管理页
+        self.driver.find_element(By.XPATH,
+                                 Xpath_Road_Start[0]).click()  # 招投标管理
+        try:
+            time.sleep(5)
+            self.driver.find_element(By.XPATH, "//div[@id='reportboxTree']//i[@class='el-icon-arrow-down']").click()
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[contains(@class,"ivu-input") and @placeholder="起始时间"]')))  # 立项时间-起始时间
+            unittest.TestCase.assertTrue(tree_element is not None, "成功打开项目管理-招投标管理页，且报表列表存在")
+            self.driver.find_element(By.XPATH,
+                                     "//label[@class='ivu-form-item-label' and text()='建设单位']/following-sibling::div/div").click()
+            orgnization_tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, "//ul[starts-with(@id,'orgTree') and @class='ztree']")))
+            unittest.TestCase.assertTrue(orgnization_tree_element is not None,
+                                         "成功打开数据填报-数据查询页，且站点列表存在")
+            utils.g_logger.info("项目管理-招投标管理页显示正常")
+            sheet.append(["项目管理-招投标管理", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["项目管理-招投标管理", "异常"])
+
+        # 调整列宽
+        for col in sheet.columns:
+            max_length = 0
+            column = col[0].column_letter
+            for cell in col:
+                try:
+                    if len(str(cell.value)) > max_length:
+                        max_length = len(cell.value)
+                except:
+                    pass
+            adjusted_width = (max_length + 8)
+            sheet.column_dimensions[column].width = adjusted_width
     def export_excel(self):
         wb.save('outputs/省级功能巡检.xlsx')
         utils.g_logger.info("省级系统功能巡检结束。")
