@@ -1844,6 +1844,54 @@ class PddI5Iot():
             utils.g_logger.info(e)
             sheet.append(["项目管理-数据统计", "异常"])
 
+        # 数据填报-数据填报页
+        self.driver.find_element(By.XPATH, "//ul[contains(@class,'navli ivu-menu')]//li[3]").click()
+        self.driver.find_element(By.XPATH, "//li[@class='ivu-menu-item' and contains(text(),'数据填报')]").click()
+        try:
+            time.sleep(3)
+            self.driver.find_element(By.XPATH, "//label[@class='ivu-form-item-label' and text()='报表']/following-sibling::div/div").click()
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[@class="ivu-input" and @placeholder="报表分类"]')))
+            unittest.TestCase.assertTrue(tree_element is not None, "成功打开数据填报页，且指定元素存在")
+            utils.g_logger.info("数据填报-数据填报页显示正常")
+            sheet.append(["数据填报-数据填报", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据填报-数据填报", "异常"])
+
+        # 数据填报数据查询页
+        self.driver.find_element(By.XPATH,
+                                 "//li[contains(@class,'ivu-menu-item') and contains(text(),'数据查询')]").click()
+        try:
+            time.sleep(3)
+            self.driver.find_element(By.XPATH,
+                                     "//label[@class='ivu-form-item-label' and text()='报表']/following-sibling::div/div").click()
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[@class="ivu-input" and @placeholder="报表分类"]')))
+            unittest.TestCase.assertTrue(tree_element is not None, "成功打开数据查询页，且指定元素存在")
+            utils.g_logger.info("数据填报-数据查询页显示正常")
+            sheet.append(["数据填报-数据查询", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据填报-数据查询", "异常"])
+
+        # 数据填报-数据汇总页
+        self.driver.find_element(By.XPATH,
+                                 "//li[contains(@class,'ivu-menu-item') and contains(text(),'数据汇总')]").click()
+        try:
+            time.sleep(3)
+            self.driver.find_element(By.XPATH,
+                                     "//label[@class='ivu-form-item-label' and text()='报表']/following-sibling::div/div").click()
+            tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
+                (By.XPATH, '//input[@class="ivu-input" and @placeholder="报表分类"]')))
+            unittest.TestCase.assertTrue(tree_element is not None, "成功打开数据汇总页，且指定元素存在")
+            utils.g_logger.info("数据填报-数据汇总页显示正常")
+            sheet.append(["数据填报-数据汇总", "正常"])
+        except Exception as e:
+            utils.g_logger.info(e)
+            sheet.append(["数据填报-数据汇总", "异常"])
+
+
         # 调整列宽
         for col in sheet.columns:
             max_length = 0
