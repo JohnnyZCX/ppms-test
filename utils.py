@@ -5,11 +5,14 @@ import sys
 import time
 import traceback
 from configparser import ConfigParser
+from io import BytesIO
 from logging import handlers
 
+from PIL import Image
 from selenium import webdriver
 from selenium.common import WebDriverException
 from selenium.webdriver import Chrome, ChromeOptions
+from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
 from selenium.webdriver.chrome.service import Service as ChromeService
 from webdriver_manager.chrome import ChromeDriverManager
@@ -96,8 +99,28 @@ def get_chrome():
 
 
 def new_chrome():
-    driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
+    chrome_options = Options()
+    chrome_options.add_argument('--headless')  # 启用无头模式
+    driver = webdriver.Chrome(options=chrome_options, service=ChromeService(ChromeDriverManager().install()))
     return driver
+
+
+def page_screenshot(driver, image_path, document, image_name):
+    """
+
+    :param driver: 浏览器驱动对象
+    :param image_path: 图片存放路径
+    :param doc: word文件对象
+    :param image_name: 图片名称
+    :return:
+    """
+    # 获取网页截图
+    screenshot = driver.get_screenshot_as_png()
+    image = Image.open(BytesIO(screenshot))
+    image.save(image_path)  # 保存截图到文件
+    # 将截图文件写入到word文档
+    document.add_heading(image_name, 5)
+    document.add_picture(image_path)
 
 
 def retry(max_retries):
