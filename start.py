@@ -84,7 +84,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/首页.png", doc, "首页")
 
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("登录成功，首页显示异常")
             sheet.append(["首页", "异常"])
             # 获取网页截图并保存至word文档
             utils.page_screenshot(self.driver, "outputs/imagefiles/首页.png", doc, "首页")
@@ -251,7 +251,7 @@ class PddI5Iot():
             sheet.append(["数据填报-汇总统计", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据填报_汇总统计.png", doc, "数据填报_汇总统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据填报-汇总统计页异常")
             sheet.append(["数据填报-汇总统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据填报_汇总统计.png", doc, "数据填报_汇总统计")
 
@@ -268,7 +268,7 @@ class PddI5Iot():
             sheet.append(["数据填报-汇总统计", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据填报_任务审核.png", doc, "数据填报_任务审核")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据填报-任务审核页异常")
             sheet.append(["数据填报-汇总统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据填报_任务审核.png", doc, "数据填报_任务审核")
 
@@ -285,7 +285,7 @@ class PddI5Iot():
             sheet.append(["数据填报-特色表分析", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/特色表分析.png", doc, "特色表分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据填报-特色表分析页异常")
             sheet.append(["数据填报-特色表分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/特色表分析.png", doc, "特色表分析")
 
@@ -317,7 +317,7 @@ class PddI5Iot():
             sheet.append(["系统管理-报表权限管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/报表权限管理.png", doc, "报表权限管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-报表权限管理页异常")
             sheet.append(["系统管理-报表权限管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/报表权限管理.png", doc, "报表权限管理")
 
@@ -334,7 +334,7 @@ class PddI5Iot():
             sheet.append(["系统管理-帮助管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/帮助管理.png", doc, "帮助管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-帮助管理页异常")
             sheet.append(["系统管理-帮助管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/帮助管理.png", doc, "帮助管理")
 
@@ -351,7 +351,7 @@ class PddI5Iot():
             sheet.append(["系统管理-工作平台", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_工作平台.png", doc, "系统管理_工作平台")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-工作平台页异常")
             sheet.append(["系统管理-工作平台", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_工作平台.png", doc, "系统管理_工作平台")
 
@@ -368,7 +368,7 @@ class PddI5Iot():
             sheet.append(["系统管理-机构管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/机构管理.png", doc, "机构管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-机构管理页异常")
             sheet.append(["系统管理-机构管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/机构管理.png", doc, "机构管理")"""
 
@@ -385,7 +385,7 @@ class PddI5Iot():
             sheet.append(["系统管理-用户管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_用户管理.png", doc, "系统管理_用户管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-用户管理页异常")
             sheet.append(["系统管理-用户管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_用户管理.png", doc, "系统管理_用户管理")
 
@@ -402,7 +402,7 @@ class PddI5Iot():
             sheet.append(["系统管理-权限管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_权限管理.png", doc, "系统管理_权限管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-权限管理页异常")
             sheet.append(["系统管理-权限管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_权限管理.png", doc, "系统管理_权限管理")
 
@@ -419,7 +419,7 @@ class PddI5Iot():
             sheet.append(["系统管理-菜单管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_菜单管理.png", doc, "系统管理_菜单管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-菜单管理页异常")
             sheet.append(["系统管理-菜单管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_菜单管理.png", doc, "系统管理_菜单管理")
 
@@ -436,7 +436,7 @@ class PddI5Iot():
             sheet.append(["系统管理-字典表管理", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_字典表管理.png", doc, "系统管理_字典表管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-字典表管理页异常")
             sheet.append(["系统管理-字典表管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_字典表管理.png", doc, "系统管理_字典表管理")
 
@@ -453,7 +453,7 @@ class PddI5Iot():
             sheet.append(["系统管理-登录日志", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_登录日志.png", doc, "系统管理_日志管理_登录日志")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-登录日志页异常")
             sheet.append(["系统管理-登录日志", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_登录日志.png", doc, "系统管理_日志管理_登录日志")
 
@@ -469,7 +469,7 @@ class PddI5Iot():
             sheet.append(["系统管理-操作日志", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_操作日志.png", doc, "系统管理_日志管理_操作日志")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-操作日志页异常")
             sheet.append(["系统管理-操作日志", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_操作日志.png", doc, "系统管理_日志管理_操作日志")
 
@@ -485,7 +485,7 @@ class PddI5Iot():
             sheet.append(["系统管理-上报日志", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_上报日志.png", doc, "系统管理_日志管理_上报日志")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-上报日志页异常")
             sheet.append(["系统管理-上报日志", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_上报日志.png", doc, "系统管理_日志管理_上报日志")
 
@@ -501,7 +501,7 @@ class PddI5Iot():
             sheet.append(["系统管理-同步日志", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_同步日志.png", doc, "系统管理_日志管理_同步日志")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-同步日志页异常")
             sheet.append(["系统管理-同步日志", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_日志管理_同步日志.png", doc, "系统管理_日志管理_同步日志")"""
 
@@ -519,7 +519,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_填报任务设置.png", doc,
                                   "系统管理_填报任务设置")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-填报任务设置异常")
             sheet.append(["系统管理-填报任务设置", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_填报任务设置.png", doc,
                                   "系统管理_填报任务设置")
@@ -539,7 +539,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_专业分析配置.png", doc,
                                   "系统管理_专业分析配置")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-专业分析配置页异常")
             sheet.append(["系统管理-专业分析配置", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_填报任务设置.png", doc,
                                   "系统管理_专业分析配置")
@@ -558,7 +558,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_定时任务管理.png", doc,
                                   "系统管理_定时任务管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-定时任务管理页异常")
             sheet.append(["系统管理-定时任务管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_定时任务管理.png", doc,
                                   "系统管理_定时任务管理")
@@ -577,7 +577,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_定制报告.png", doc,
                                   "系统管理_定制报告")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-定制报告页异常")
             sheet.append(["系统管理-定制报告", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_填报任务设置.png", doc,
                                   "系统管理_定制报告")
@@ -596,7 +596,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_预警阈值设置.png", doc,
                                   "系统管理_预警阈值设置")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-预警阈值设置页异常")
             sheet.append(["系统管理-预警阈值设置", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_预警阈值设置.png", doc,
                                   "系统管理_预警阈值设置")
@@ -615,7 +615,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_模型管理.png", doc,
                                   "系统管理_模型管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-模型管理页异常")
             sheet.append(["系统管理-模型管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_模型管理.png", doc,
                                   "系统管理_模型管理")
@@ -634,7 +634,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_县级用户关系绑定.png", doc,
                                   "系统管理_县级用户关系绑定")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-县级用户关系绑定页异常")
             sheet.append(["系统管理-县级用户关系绑定", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_县级用户关系绑定.png", doc,
                                   "系统管理_县级用户关系绑定")
@@ -653,7 +653,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_系统更新日志.png", doc,
                                   "系统管理_系统更新日志")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("系统管理-系统更新日志页异常")
             sheet.append(["系统管理-系统更新日志", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/系统管理_系统更新日志.png", doc,
                                   "系统管理_系统更新日志")"""
@@ -683,7 +683,7 @@ class PddI5Iot():
             sheet.append(["物联网-工作平台", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_工作平台.png", doc, "物联网_工作平台")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-工作平台页异常")
             sheet.append(["物联网-工作平台", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_工作平台.png", doc, "物联网_工作平台")
 
@@ -698,7 +698,7 @@ class PddI5Iot():
             sheet.append(["物联网-监测点分布", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_监测点分布.png", doc, "物联网_监测点分布")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-监测点分布页异常")
             sheet.append(["物联网-监测点分布", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_监测点分布.png", doc, "物联网_监测点分布")
 
@@ -714,7 +714,7 @@ class PddI5Iot():
             sheet.append(["物联网-设备分布", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_设备分布.png", doc, "物联网_设备分布")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-设备分布页异常")
             sheet.append(["物联网-设备分布", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_设备分布.png", doc, "物联网_设备分布")
 
@@ -732,7 +732,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_趋势分析.png", doc,
                                   "物联网_环境气象_趋势分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("环境气象-趋势分析页异常")
             sheet.append(["环境气象-趋势分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_趋势分析.png", doc,
                                   "物联网_环境气象_趋势分析")
@@ -749,7 +749,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_实时数据列表.png", doc,
                                   "物联网_环境气象_实时数据列表")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("环境气象-实时数据列表显示正常")
             sheet.append(["环境气象-实时数据列表", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_实时数据列表.png", doc,
                                   "物联网_环境气象_实时数据列表")
@@ -766,7 +766,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_实时数据统计.png", doc,
                                   "物联网_环境气象_实时数据统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("环境气象-实时数据统计页异常")
             sheet.append(["环境气象-实时数据统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_实时数据统计.png", doc,
                                   "物联网_环境气象_实时数据统计")
@@ -783,7 +783,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_逐日数据统计.png", doc,
                                   "物联网_环境气象_逐日数据统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("环境气象-逐日数据统计页异常")
             sheet.append(["环境气象-逐日数据统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_逐日数据统计.png", doc,
                                   "物联网_环境气象_逐日数据统计")
@@ -802,7 +802,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_逐日数据列表.png", doc,
                                   "物联网_环境气象_逐日数据列表")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("环境气象-逐日数据列表页异常")
             sheet.append(["环境气象-逐日数据列表", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_环境气象_逐日数据列表.png", doc,
                                   "物联网_环境气象_逐日数据列表")
@@ -821,7 +821,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_性诱数据分析.png", doc,
                                   "物联网_性诱监测_性诱数据分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("性诱监测-性诱数据分析页异常")
             sheet.append(["性诱监测-性诱数据分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_性诱数据分析.png", doc,
                                   "物联网_性诱监测_性诱数据分析")
@@ -839,7 +839,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_数据统计列表.png", doc,
                                   "物联网_性诱监测_数据统计列表")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("性诱监测-数据统计列表页异常")
             sheet.append(["性诱监测-数据统计列表", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_数据统计列表.png", doc,
                                   "物联网_性诱监测_数据统计列表")
@@ -858,7 +858,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_性诱数据统计.png", doc,
                                   "物联网_性诱监测_性诱数据统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("性诱监测-性诱数据统计页异常")
             sheet.append(["性诱监测-性诱数据统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_性诱数据统计.png", doc,
                                   "物联网_性诱监测_性诱数据统计")
@@ -881,7 +881,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_趋势分析.png", doc,
                                   "物联网_性诱监测_趋势分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("性诱监测-趋势分析页异常")
             sheet.append(["性诱监测-趋势分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_性诱监测_趋势分析.png", doc,
                                   "物联网_性诱监测_趋势分析")
@@ -900,7 +900,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_灯诱数据分析.png", doc,
                                   "物联网_灯诱监测_灯诱数据分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-灯诱监测-灯诱数据分析页异常")
             sheet.append(["物联网-灯诱监测-灯诱数据分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_灯诱数据分析.png", doc,
                                   "物联网_灯诱监测_灯诱数据分析")
@@ -919,7 +919,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_数据统计列表.png", doc,
                                   "物联网_灯诱监测_数据统计列表")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-灯诱监测-数据统计列表页异常")
             sheet.append(["物联网-灯诱监测-数据统计列表", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_数据统计列表.png", doc,
                                   "物联网_灯诱监测_数据统计列表")
@@ -942,7 +942,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_灯诱图片展示.png", doc,
                                   "物联网_灯诱监测_灯诱图片展示")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-灯诱监测-灯诱图片展示页异常")
             sheet.append(["物联网-灯诱监测-灯诱图片展示", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_灯诱图片展示.png", doc,
                                   "物联网_灯诱监测_灯诱图片展示")
@@ -962,7 +962,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_灯诱识别结果统计.png", doc,
                                   "物联网_灯诱监测_灯诱识别结果统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-灯诱监测-灯诱识别结果统计页异常")
             sheet.append(["物联网-灯诱监测-灯诱识别结果统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_灯诱识别结果统计.png", doc,
                                   "物联网_灯诱监测_灯诱识别结果统计")
@@ -983,7 +983,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_趋势分析.png", doc,
                                   "物联网_灯诱监测_趋势分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-灯诱监测-趋势分析页异常")
             sheet.append(["物联网-灯诱监测-趋势分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_灯诱监测_趋势分析.png", doc,
                                   "物联网_灯诱监测_趋势分析")
@@ -1004,7 +1004,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_病害监测_马铃薯晚疫病.png", doc,
                                   "物联网_病害监测_马铃薯晚疫病")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-病害监测-马铃薯晚疫病页异常")
             sheet.append(["物联网-病害监测-马铃薯晚疫病", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_病害监测_马铃薯晚疫病.png", doc,
                                   "物联网_病害监测_马铃薯晚疫病")
@@ -1023,7 +1023,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_病害监测_小麦赤霉病.png", doc,
                                   "物联网_病害监测_小麦赤霉病")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-病害监测-小麦赤霉病页异常")
             sheet.append(["物联网-病害监测-小麦赤霉病", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_病害监测_小麦赤霉病.png", doc,
                                   "物联网_病害监测_小麦赤霉病")
@@ -1042,7 +1042,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_病害监测_孢子监测.png", doc,
                                   "物联网_病害监测_孢子监测")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-病害监测-孢子监测页异常")
             sheet.append(["物联网-病害监测-孢子监测", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_病害监测_孢子监测.png", doc,
                                   "物联网_病害监测_孢子监测")
@@ -1076,7 +1076,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_虫量对比分析.png", doc,
                                   "物联网_虫量对比分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-虫量对比分析页异常")
             sheet.append(["物联网-虫量对比分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_虫量对比分析.png", doc,
                                   "物联网_虫量对比分析")
@@ -1098,7 +1098,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_物联网管理_设备管理.png", doc,
                                   "物联网_物联网管理_设备管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-物联网管理-设备管理页异常")
             sheet.append(["物联网-物联网管理-设备管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_物联网管理_设备管理.png", doc,
                                   "物联网_物联网管理_设备管理")
@@ -1117,7 +1117,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_物联网管理_监测点管理.png", doc,
                                   "物联网_物联网管理_监测点管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-物联网管理-监测点管理页异常")
             sheet.append(["物联网-物联网管理-监测点管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_物联网管理_监测点管理.png", doc,
                                   "物联网_物联网管理_监测点管理")
@@ -1139,7 +1139,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_视频监控_视频监控分布.png", doc,
                                   "物联网_视频监控_视频监控分布")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-视频监控-视频监控分布页异常")
             sheet.append(["物联网-视频监控-视频监控分布", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_视频监控_视频监控分布.png", doc,
                                   "物联网_视频监控_视频监控分布")
@@ -1162,7 +1162,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_视频监控_视频图片展示.png", doc,
                                   "物联网_视频监控_视频图片展示")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("物联网-视频监控-视频图片展示页异常")
             sheet.append(["物联网-视频监控-视频图片展示", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网_视频监控_视频图片展示.png", doc,
                                   "物联网_视频监控_视频图片展示")
@@ -1193,7 +1193,7 @@ class PddI5Iot():
             sheet.append(["模型预警", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/模型预警.png", doc, "模型预警")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("模型预警页异常")
             sheet.append(["模型预警", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/模型预警.png", doc, "模型预警")
 
@@ -1221,7 +1221,7 @@ class PddI5Iot():
             sheet.append(["数据分析-综合分析", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_综合分析.png", doc, "数据分析_综合分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据分析-综合分析页异常")
             sheet.append(["数据分析-综合分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_综合分析.png", doc, "数据分析_综合分析")
 
@@ -1246,7 +1246,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_专题分析.png", doc, "数据分析_专题分析")
             self.driver.find_element(By.XPATH, "//div[@class='el-form-item__content']//span[text()='关闭']").click()
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据分析-专题分析页异常")
             sheet.append(["数据分析-专题分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_专题分析.png", doc, "数据分析_专题分析")
 
@@ -1268,7 +1268,7 @@ class PddI5Iot():
             sheet.append(["数据分析-GIS分析", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_GIS分析.png", doc, "数据分析_GIS分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据分析-GIS分析页异常")
             sheet.append(["数据分析-GIS分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_GIS分析.png", doc, "数据分析_GIS分析")
 
@@ -1285,7 +1285,7 @@ class PddI5Iot():
             sheet.append(["数据分析-自定义分析", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_自定义分析.png", doc, "数据分析_自定义分析")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据分析-自定义分析页异常")
             sheet.append(["数据分析-自定义分析", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_自定义分析.png", doc, "数据分析_自定义分析")
 
@@ -1301,7 +1301,7 @@ class PddI5Iot():
             sheet.append(["数据分析-数据报告", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_数据报告.png", doc, "数据分析_数据报告")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("数据分析-数据报告页异常")
             sheet.append(["数据分析-数据报告", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据分析_数据报告.png", doc, "数据分析_数据报告")
 
@@ -1329,7 +1329,7 @@ class PddI5Iot():
             sheet.append(["知识库-工作平台", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_工作平台.png", doc, "知识库_工作平台")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-工作平台页异常")
             sheet.append(["知识库-工作平台", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_工作平台.png", doc, "知识库_工作平台")
 
@@ -1348,7 +1348,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_病虫害知识库_知识浏览.png", doc,
                                   "知识库_病虫害知识库_知识浏览")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-病虫害知识库-知识浏览页异常")
             sheet.append(["知识库-病虫害知识库-知识浏览", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_病虫害知识库_知识浏览.png", doc,
                                   "知识库_病虫害知识库_知识浏览")
@@ -1367,7 +1367,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_病虫害知识库_知识维护.png", doc,
                                   "知识库_病虫害知识库_知识维护")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-病虫害知识库-知识维护页异常")
             sheet.append(["知识库-病虫害知识库-知识维护", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_病虫害知识库_知识维护.png", doc,
                                   "知识库_病虫害知识库_知识维护")
@@ -1387,7 +1387,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_植保知识库_知识浏览.png", doc,
                                   "知识库_植保知识库_知识浏览")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-植保知识库-知识浏览页异常")
             sheet.append(["知识库-植保知识库-知识浏览", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_植保知识库_知识浏览.png", doc,
                                   "知识库_植保知识库_知识浏览")
@@ -1406,7 +1406,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_植保知识库_知识审核.png", doc,
                                   "知识库_植保知识库_知识审核")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-植保知识库-知识审核页异常")
             sheet.append(["知识库-植保知识库-知识审核", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_植保知识库_知识审核.png", doc,
                                   "知识库_植保知识库_知识审核")
@@ -1425,7 +1425,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_植保知识库_知识上传.png", doc,
                                   "知识库_植保知识库_知识上传")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-植保知识库-知识上传页异常")
             sheet.append(["知识库-植保知识库-知识上传", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_植保知识库_知识上传.png", doc,
                                   "知识库_植保知识库_知识上传")
@@ -1443,7 +1443,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_资料库.png", doc,
                                   "知识库_资料库")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-资料库页异常")
             sheet.append(["知识库-资料库", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/知识库_资料库.png", doc,
                                   "知识库_资料库")
@@ -1466,7 +1466,7 @@ class PddI5Iot():
             sheet.append(["知识库-作物知识库-知识浏览", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/作物知识库_知识浏览.png", doc, "作物知识库_知识浏览")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-作物知识库-知识浏览页异常")
             sheet.append(["知识库-作物知识库-知识浏览", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/作物知识库_知识浏览.png", doc, "作物知识库_知识浏览")
 
@@ -1483,7 +1483,7 @@ class PddI5Iot():
             sheet.append(["知识库-作物知识库-知识维护", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/作物知识库_知识维护.png", doc, "作物知识库_知识维护")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("知识库-作物知识库-知识维护页异常")
             sheet.append(["知识库-作物知识库-知识维护", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/作物知识库_知识维护.png", doc, "作物知识库_知识维护")
 
@@ -1549,7 +1549,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_文件收发管理_草稿箱.png", doc,
                                   "办公应用_文件收发管理_草稿箱")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-文件收发管理-草稿箱页异常")
             sheet.append(["办公应用-文件收发管理-草稿箱", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_文件收发管理_草稿箱.png", doc,
                                   "办公应用_文件收发管理_草稿箱")
@@ -1568,7 +1568,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_文件收发管理_发件箱.png", doc,
                                   "办公应用_文件收发管理_发件箱")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-文件收发管理-发件箱页异常")
             sheet.append(["办公应用-文件收发管理-发件箱", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_文件收发管理_发件箱.png", doc,
                                   "办公应用_文件收发管理_发件箱")
@@ -1588,7 +1588,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_病虫害情报_情报管理.png", doc,
                                   "办公应用_病虫害情报_情报管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-病虫害情报-情报管理页异常")
             sheet.append(["办公应用-病虫害情报-情报管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_病虫害情报_情报管理.png", doc,
                                   "办公应用_病虫害情报_情报管理")
@@ -1607,7 +1607,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_病虫害情报_情报库检索.png", doc,
                                   "办公应用_病虫害情报_情报库检索")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-病虫害情报-情报库检索页异常")
             sheet.append(["办公应用-病虫害情报-情报库检索", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_病虫害情报_情报库检索.png", doc,
                                   "办公应用_病虫害情报_情报库检索")
@@ -1627,7 +1627,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_病虫害情报_情报统计.png", doc,
                                   "办公应用_病虫害情报_情报统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-病虫害情报-情报统计页异常")
             sheet.append(["办公应用-病虫害情报-情报统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_病虫害情报_情报统计.png", doc,
                                   "办公应用_病虫害情报_情报统计")
@@ -1647,7 +1647,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_新闻管理_新闻浏览.png", doc,
                                   "办公应用_新闻管理_新闻浏览")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-新闻管理-新闻浏览页异常")
             sheet.append(["办公应用-新闻管理-新闻浏览", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_新闻管理_新闻浏览.png", doc,
                                   "办公应用_新闻管理_新闻浏览")
@@ -1665,7 +1665,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_新闻管理_新闻上传.png", doc,
                                   "办公应用_新闻管理_新闻上传")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-新闻管理-新闻上传页异常")
             sheet.append(["办公应用-新闻管理-新闻上传", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_新闻管理_新闻上传.png", doc,
                                   "办公应用_新闻管理_新闻上传")
@@ -1685,7 +1685,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_视频会议_会议管理.png", doc,
                                   "办公应用_视频会议_会议管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-视频会议-会议管理页异常")
             sheet.append(["办公应用-视频会议-会议管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_视频会议_会议管理.png", doc,
                                   "办公应用_视频会议_会议管理")
@@ -1704,7 +1704,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_视频会议_我的会议.png", doc,
                                   "办公应用_视频会议_我的会议")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-视频会议-我的会议页异常")
             sheet.append(["办公应用-视频会议-我的会议", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_视频会议_我的会议.png", doc,
                                   "办公应用_视频会议_我的会议")
@@ -1725,7 +1725,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_通知公告_公告管理.png", doc,
                                   "办公应用_通知公告_公告管理")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-通知公告-公告管理页异常")
             sheet.append(["办公应用-通知公告-公告管理", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_通知公告_公告管理.png", doc,
                                   "办公应用_通知公告_公告管理")
@@ -1744,7 +1744,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_通知公告_公告查阅.png", doc,
                                   "办公应用_通知公告_公告查阅")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-通知公告-公告查阅页异常")
             sheet.append(["办公应用-通知公告-公告查阅", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_通知公告_公告查阅.png", doc,
                                   "办公应用_通知公告_公告查阅")
@@ -1761,7 +1761,7 @@ class PddI5Iot():
             sheet.append(["办公应用-工作总结", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_工作总结.png", doc, "办公应用_工作总结")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-工作总结页异常")
             sheet.append(["办公应用-工作总结", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_工作总结.png", doc, "办公应用_工作总结")
 
@@ -1782,7 +1782,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_业务考核_报送统计.png", doc,
                                   "办公应用_业务考核_报送统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-业务考核-报送统计页异常")
             sheet.append(["办公应用-业务考核-报送统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_业务考核_报送统计.png", doc,
                                   "办公应用_业务考核_报送统计")
@@ -1802,7 +1802,7 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_业务考核_考核统计.png", doc,
                                   "办公应用_业务考核_考核统计")
         except Exception as e:
-            utils.g_logger.info(e)
+            utils.g_logger.info("办公应用-业务考核-考核统计页异常")
             sheet.append(["办公应用-业务考核-考核统计", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_业务考核_考核统计.png", doc,
                                   "办公应用_业务考核_考核统计")
@@ -2207,7 +2207,7 @@ class PddI5Iot():
 
     def export_excel(self):
         wb.save('outputs/省级功能巡检.xlsx')
-        utils.g_logger.info("省级系统功能巡检结束。")
+        utils.g_logger.info("省级系统功能巡检结束，请检查输出的巡检文件内容。")
 
 
 if __name__ == '__main__':
