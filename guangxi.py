@@ -13,11 +13,19 @@ import utils
 
 MAX_TRIES = 4
 
-# cfg = utils.load_cfg()
 wb = openpyxl.Workbook()
+# 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
+wb.create_sheet("广西农作物病虫疫情信息调度指挥平台", 0)
+sheet = wb["广西农作物病虫疫情信息调度指挥平台"]
+# 写入表头
+headers = ["页面", "检测结果"]
+sheet.append(headers)
+
+# 创建Word文档对象
+doc = docx.Document()
 
 
-class PddI5Iot():
+class PPMSGX():
 
     def __init__(self):
         # self.cookies = {}
@@ -35,20 +43,8 @@ class PddI5Iot():
 
     @utils.retry(MAX_TRIES)
     def test_guangXi(self):
-        # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
-        wb.create_sheet("广西农作物病虫疫情信息调度指挥平台", 0)
-        sheet = wb["广西农作物病虫疫情信息调度指挥平台"]
-        # 写入表头
-        headers = ["页面", "检测结果"]
-        sheet.append(headers)
         username = input("广西省级系统生产环境巡检开始\n请输入登录用户名：")
         password = input("请输入登录密码：")
-        """guangXi_cfg = cfg["guangXi"]
-        base_url = guangXi_cfg["baseUrl"]
-        username = guangXi_cfg["username"]
-        password = guangXi_cfg["password"]"""
-        # 创建Word文档对象
-        doc = docx.Document()
         self.driver.maximize_window()
         # self.driver.get(base_url + "login")
         self.driver.get("https://gx.pestiot.com/login")
@@ -265,11 +261,11 @@ class PddI5Iot():
             unittest.TestCase.assertTrue(element is not None,
                                          "成功打开数据填报-任务审核页，且指定元素存在")
             utils.g_logger.info("数据填报-任务审核页显示正常")
-            sheet.append(["数据填报-汇总统计", "正常"])
+            sheet.append(["数据填报-任务审核", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据填报_任务审核.png", doc, "数据填报_任务审核")
         except Exception as e:
             utils.g_logger.info("数据填报-任务审核页异常")
-            sheet.append(["数据填报-汇总统计", "异常"])
+            sheet.append(["数据填报-任务审核", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/数据填报_任务审核.png", doc, "数据填报_任务审核")
 
         # 数据填报特色表分析页
@@ -928,12 +924,12 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH,
                                  "//li[@role='menuitem'][text()='灯诱图片展示 ']").click()
         try:
-            time.sleep(15)
-            calendar_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
+            time.sleep(16)
+            calendar_element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
                 (By.XPATH, "//table[@class='el-calendar-table']")))
             unittest.TestCase.assertTrue(calendar_element is not None,
                                          "成功打开物联网-灯诱监测-灯诱图片展示页，且日历元素存在")
-            image_element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
+            image_element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
                 (By.XPATH, "//div[@id='map']/div[@class='time']")))
             unittest.TestCase.assertTrue(image_element is not None,
                                          "成功打开物联网-灯诱监测-灯诱图片展示页，且图片元素存在")
@@ -952,7 +948,7 @@ class PddI5Iot():
                                  "//li[@role='menuitem'][text()='灯诱识别结果统计 ']").click()
         try:
             time.sleep(14)
-            element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
+            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
                 (By.XPATH,
                  "//div[@class='el-col_label']/parent::div/following-sibling::div/div[@class='el-checkbox-group']")))
             unittest.TestCase.assertTrue(element is not None,
@@ -973,7 +969,7 @@ class PddI5Iot():
                                  "//li[@role='menuitem'][text()='灯诱识别结果统计 ']/parent::div/following-sibling::div").click()
         try:
             time.sleep(12)
-            element = WebDriverWait(self.driver, 5).until(EC.visibility_of_element_located(
+            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
                 (By.XPATH,
                  "//div[@class='el-col_label']/parent::div/following-sibling::div/div[@role='radiogroup']")))
             unittest.TestCase.assertTrue(element is not None,
@@ -989,13 +985,13 @@ class PddI5Iot():
                                   "物联网_灯诱监测_趋势分析")
 
         # 病害监测-马铃薯晚疫病页
-        time.sleep(5)
+        time.sleep(15)
         self.driver.find_element(By.XPATH, "//span[@slot='title' and text()='病害监测']").click()
         time.sleep(4)
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='马铃薯晚疫病 ']").click()
         try:
             time.sleep(12)
-            element = WebDriverWait(self.driver, 5).until(
+            element = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((By.XPATH, "//div[@class='legendbox']")))
             unittest.TestCase.assertTrue(element is not None,
                                          "成功打开物联网-病害监测-马铃薯晚疫病页，且病害分布图图例存在")
@@ -1014,7 +1010,7 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='小麦赤霉病 ']").click()
         try:
             time.sleep(12)
-            element = WebDriverWait(self.driver, 5).until(
+            element = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((By.XPATH, "//div[@class='legendbox']")))
             unittest.TestCase.assertTrue(element is not None,
                                          "成功打开物联网-病害监测-小麦赤霉病页，且病害分布图图例存在")
@@ -1033,7 +1029,7 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH, "//li[@role='menuitem'][text()='孢子监测 ']").click()
         try:
             time.sleep(13)
-            element = WebDriverWait(self.driver, 5).until(
+            element = WebDriverWait(self.driver, 15).until(
                 EC.visibility_of_element_located((By.XPATH, "//div[@id='map']/div[@class='time']")))
             unittest.TestCase.assertTrue(element is not None,
                                          "成功打开物联网-病害监测-孢子监测页，且孢子图片存在")
@@ -1183,7 +1179,7 @@ class PddI5Iot():
         time.sleep(3)
         self.driver.find_element(By.XPATH, "//div[starts-with(@class,'navi-item')][text()='模型预警 ']").click()
         try:
-            time.sleep(12)
+            time.sleep(15)
             self.driver.find_element(By.XPATH, "//label[text()='模型名称']/following-sibling::div//input").click()
             element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(
                 (By.XPATH, "//div[@x-placement]//ul[@class='el-scrollbar__view el-select-dropdown__list']/li[1]")))
@@ -1201,7 +1197,7 @@ class PddI5Iot():
         time.sleep(3)
         self.driver.find_element(By.XPATH, "//div[starts-with(@class,'navi-item')][text()='数据分析 ']").click()
         try:
-            time.sleep(10)
+            time.sleep(15)
             element = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.XPATH, "//div[@role='radiogroup']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开数据分析-综合分析页，且指定元素存在")
@@ -1229,7 +1225,7 @@ class PddI5Iot():
         time.sleep(3)
         self.driver.find_element(By.XPATH, "//span[text()='专题分析']").click()
         try:
-            time.sleep(10)
+            time.sleep(15)
             elements = WebDriverWait(self.driver, 10).until(EC.presence_of_all_elements_located(
                 (By.XPATH, "//div[@class='el-image']")))
             unittest.TestCase.assertTrue(elements is not None,
@@ -1254,7 +1250,7 @@ class PddI5Iot():
         time.sleep(3)
         self.driver.find_element(By.XPATH, "//span[text()='GIS分析']").click()
         try:
-            time.sleep(8)
+            time.sleep(10)
             element = WebDriverWait(self.driver, 10).until(EC.visibility_of_element_located(
                 (By.XPATH, "//label[text()='分析指标']")))
             unittest.TestCase.assertTrue(element is not None,
@@ -1454,7 +1450,7 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH,
                                  "//span[text()='作物知识库']/parent::div/following-sibling::ul//li[text()='知识浏览 ']").click()
         try:
-            time.sleep(8)
+            time.sleep(6)
             element = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.XPATH, "//div[@role='radiogroup']//span[text()='粮食作物']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开知识库-作物知识库-知识浏览页，且指定元素存在")
@@ -1475,7 +1471,7 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH,
                                  "//span[text()='作物知识库']/parent::div/following-sibling::ul//li[text()='知识维护 ']").click()
         try:
-            time.sleep(8)
+            time.sleep(10)
             element = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located((By.XPATH, "//div[@class='cell'][text()='中文名']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开知识库-作物知识库-知识维护页，且指定元素存在")
@@ -1793,7 +1789,7 @@ class PddI5Iot():
                                  "//span[text()='业务考核']/parent::div/following-sibling::ul//li[text()='考核统计 ']").click()
         try:
             time.sleep(12)
-            element = WebDriverWait(self.driver, 12,4).until(
+            element = WebDriverWait(self.driver, 12, 4).until(
                 EC.visibility_of_element_located((By.XPATH,
                                                   "//th[contains(@class,'     is-leaf el-table__cell')]//div[@class='cell'][text()='总分']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开办公应用-业务考核-考核统计页，且指定元素存在")
@@ -1807,71 +1803,6 @@ class PddI5Iot():
             utils.page_screenshot(self.driver, "outputs/imagefiles/办公应用_业务考核_考核统计.png", doc,
                                   "办公应用_业务考核_考核统计")
         doc.save('outputs/广西截图.docx')
-
-        # 调整列宽
-        for col in sheet.columns:
-            max_length = 0
-            column = col[0].column_letter
-            for cell in col:
-                try:
-                    if len(str(cell.value)) > max_length:
-                        max_length = len(cell.value)
-                except:
-                    pass
-            adjusted_width = (max_length + 8)
-            sheet.column_dimensions[column].width = adjusted_width
-
-    @utils.retry(MAX_TRIES)
-    def test_huBei(self):
-        # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
-        wb.create_sheet("湖北省病虫疫情信息调度指挥中心", 1)
-        sheet = wb["湖北省病虫疫情信息调度指挥中心"]
-        # 写入表头
-        headers = ["页面", "检测结果"]
-        sheet.append(headers)
-        username = input("湖北省级系统生产环境巡检开始\n请输入登录用户名：")
-        password = input("请输入登录密码：")
-        '''guangXi_cfg = cfg["guangXi"]
-        base_url = guangXi_cfg["baseUrl"]
-        username = guangXi_cfg["username"]
-        password = guangXi_cfg["password"]'''
-        self.driver.maximize_window()
-        # self.driver.get(base_url + "login")
-        self.driver.get("https://nyt.hubei.gov.cn/pestiot/")
-        self.driver.implicitly_wait(4)
-
-        # 登录
-        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入用户名"]').send_keys(username)
-        self.driver.find_element(By.XPATH, '//input[@name="password"]').send_keys(password)
-        yanzhengma_image = self.driver.find_element(By.XPATH, '//img[contains(@src,"data:image/png;base64")]')
-        img_bytes = yanzhengma_image.screenshot_as_png
-        yzm = ddddocr.DdddOcr(show_ad=False).classification(img_bytes)
-        self.driver.find_element(By.XPATH, '//input[@placeholder="请输入验证码"]').send_keys(yzm)
-        time.sleep(3)
-        self.driver.find_element(By.XPATH, '//button[@type="button"]').click()
-
-        # 首页全年任务数量元素校验
-        try:
-            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
-                (By.XPATH, '//div[@class="map-title"]')))
-            unittest.TestCase.assertTrue(element is not None, "登录成功，成功打开首页，且指定元素存在")
-            utils.g_logger.info(f"登录成功，成功打开首页")
-            sheet.append(["首页", "正常"])
-        except Exception as e:
-            utils.g_logger.info(e)
-            sheet.append(["首页", "异常"])
-
-        # 数据填报工作平台页
-        self.driver.find_element(By.XPATH, "//div[@class='navigation-list-origin']//span[text()=' 监测预报']").click()
-        try:
-            element = WebDriverWait(self.driver, 15).until(EC.visibility_of_element_located(
-                (By.XPATH, '//div[@class="widget_title widget_title_heading"][text()=" 填报任务一览 "]')))
-            unittest.TestCase.assertTrue(element is not None, "成功打开数据填报工作平台，且指定元素存在")
-            utils.g_logger.info("数据填报-工作平台页显示正常")
-            sheet.append(["数据填报-工作平台", "正常"])
-        except Exception as e:
-            utils.g_logger.info(e)
-            sheet.append(["数据填报-工作平台", "异常"])
 
         # 调整列宽
         for col in sheet.columns:
@@ -2126,7 +2057,7 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH,
                                  "//*[i[@data-v-36cafb69=''] and contains(text(), '数据统计')]").click()  # 数据统计
         self.driver.find_element(By.XPATH,
-                                 "//li[@class='ivu-menu-item' and contains(text(), '数据统计')]").click()   # 数据统计，不稳定，点击两次
+                                 "//li[@class='ivu-menu-item' and contains(text(), '数据统计')]").click()  # 数据统计，不稳定，点击两次
         try:
             time.sleep(5)
             tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
@@ -2149,7 +2080,8 @@ class PddI5Iot():
         self.driver.find_element(By.XPATH, "//li[@class='ivu-menu-item' and contains(text(),'数据填报')]").click()
         try:
             time.sleep(3)
-            self.driver.find_element(By.XPATH, "//label[@class='ivu-form-item-label' and text()='报表']/following-sibling::div/div").click()
+            self.driver.find_element(By.XPATH,
+                                     "//label[@class='ivu-form-item-label' and text()='报表']/following-sibling::div/div").click()
             tree_element = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located(
                 (By.XPATH, '//input[@class="ivu-input" and @placeholder="报表分类"]')))
             unittest.TestCase.assertTrue(tree_element is not None, "成功打开数据填报页，且指定元素存在")
@@ -2191,7 +2123,6 @@ class PddI5Iot():
             utils.g_logger.info(e)
             sheet.append(["数据填报-数据汇总", "异常"])
 
-
         # 调整列宽
         for col in sheet.columns:
             max_length = 0
@@ -2211,7 +2142,7 @@ class PddI5Iot():
 
 
 if __name__ == '__main__':
-    p = PddI5Iot()
+    p = PPMSGX()
     # 广西省级系统页面巡检
     p.test_guangXi()
     # 将所有巡检结果导出excel文件
