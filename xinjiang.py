@@ -15,7 +15,7 @@ MAX_TRIES = 4
 # cfg = utils.load_cfg()
 wb = openpyxl.Workbook()
 # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
-wb.create_sheet("新疆维吾尔自治区农作物病虫疫情监测信息调度管理平台", 1)
+wb.create_sheet("新疆维吾尔自治区农作物病虫疫情监测信息调度管理平台", 0)
 sheet = wb["新疆维吾尔自治区农作物病虫疫情监测信息调度管理平台"]
 # 写入表头
 headers = ["页面", "检测结果"]
@@ -890,6 +890,28 @@ class PPMSXJ():
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网监测-物联网管理-监测点管理.png", doc,
                                   "物联网监测-物联网管理-监测点管理")
 
+        # 鼠害监测-实时数据列表
+        try:
+            time.sleep(3)
+            self.driver.find_element(By.XPATH, "//span[text()='鼠害监测']").click()
+            time.sleep(2)
+            self.driver.find_element(By.XPATH,
+                                     "//li[contains(@class,'is-opened')]//li[text()='实时数据列表 ']").click()
+            time.sleep(10)
+            element = WebDriverWait(self.driver, 10).until(
+                EC.presence_of_element_located((By.XPATH, "//div[text()='老鼠种类']")))
+            unittest.TestCase.assertTrue(element is not None, "成功打开物联网监测-鼠害监测-实时数据列表")
+            utils.g_logger.info("物联网监测-鼠害监测-实时数据列表页显示正常")
+            sheet.append(["物联网监测-鼠害监测-实时数据列表", "正常"])
+            # 获取网页截图并保存至word文档
+            utils.page_screenshot(self.driver, "outputs/imagefiles/物联网监测-鼠害监测-实时数据列表.png", doc,
+                                  "物联网监测-鼠害监测-实时数据列表")
+        except Exception as e:
+            utils.g_logger.info("物联网监测-鼠害监测-实时数据列表页显示异常")
+            sheet.append(["物联网监测-鼠害监测-实时数据列表", "异常"])
+            utils.page_screenshot(self.driver, "outputs/imagefiles/物联网监测-鼠害监测-实时数据列表.png", doc,
+                                  "物联网监测-鼠害监测-实时数据列表")
+
         # 种药处视频
         try:
             self.driver.find_element(By.XPATH, "//span[text()='种药处视频']").click()
@@ -907,36 +929,16 @@ class PPMSXJ():
             sheet.append(["物联网监测-种药处视频", "异常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/物联网监测-种药处视频.png", doc,
                                   "物联网监测-种药处视频")
+
         # 执行”关闭所有“页面操作
         self.driver.find_element(By.XPATH, "//div[@class='close-con']").click()
         try:
-            element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable((By.XPATH, "//ul[@class='el-dropdown-menu el-popper']/li[text()='关闭所有']")))
+            element = WebDriverWait(self.driver, 10).until(EC.element_to_be_clickable(
+                (By.XPATH, "//ul[@class='el-dropdown-menu el-popper']/li[text()='关闭所有']")))
             element.click()
             utils.g_logger.info("成功关闭所有页面")
         except Exception:
             utils.g_logger.info("关闭所有页面失败")
-
-        # 鼠害监测-实时数据列表
-        try:
-            time.sleep(5)
-            self.driver.find_element(By.XPATH, "//span[text()='鼠害监测']").click()
-            time.sleep(2)
-            self.driver.find_element(By.XPATH,
-                                     "//li[contains(@class,'is-opened')]//li[text()='实时数据列表 ']").click()
-            time.sleep(10)
-            element = WebDriverWait(self.driver, 15).until(
-                EC.presence_of_element_located((By.XPATH, "//div[text()='老鼠种类']")))
-            unittest.TestCase.assertTrue(element is not None, "成功打开物联网监测-鼠害监测-实时数据列表")
-            utils.g_logger.info("物联网监测-鼠害监测-实时数据列表页显示正常")
-            sheet.append(["物联网监测-鼠害监测-实时数据列表", "正常"])
-            # 获取网页截图并保存至word文档
-            utils.page_screenshot(self.driver, "outputs/imagefiles/物联网监测-鼠害监测-实时数据列表.png", doc,
-                                  "物联网监测-鼠害监测-实时数据列表")
-        except Exception as e:
-            utils.g_logger.info("物联网监测-鼠害监测-实时数据列表页显示异常")
-            sheet.append(["物联网监测-鼠害监测-实时数据列表", "异常"])
-            utils.page_screenshot(self.driver, "outputs/imagefiles/物联网监测-鼠害监测-实时数据列表.png", doc,
-                                  "物联网监测-鼠害监测-实时数据列表")
 
     @utils.retry(MAX_TRIES)
     def test_bingchongyujing(self):

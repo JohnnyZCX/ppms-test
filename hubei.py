@@ -16,7 +16,7 @@ MAX_TRIES = 4
 # cfg = utils.load_cfg()
 wb = openpyxl.Workbook()
 # 创建一个sheet并加上名称和所在位置，第一个位置索引号是0
-wb.create_sheet("湖北省病虫疫情信息调度指挥中心", 1)
+wb.create_sheet("湖北省病虫疫情信息调度指挥中心", 0)
 sheet = wb["湖北省病虫疫情信息调度指挥中心"]
 # 写入表头
 headers = ["页面", "检测结果"]
