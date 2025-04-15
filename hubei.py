@@ -1292,6 +1292,7 @@ class PPMSHB():
             utils.g_logger.info("成功关闭所有页面")
         except Exception as e:
             utils.g_logger.info("关闭所有页面执行失败")
+
     @utils.retry(MAX_TRIES)
     def test_zhiwujianyi(self):
         # 植物检疫-产地检疫-产检申请
