@@ -100,7 +100,7 @@ def get_chrome():
 
 def new_chrome():
     chrome_options = Options()
-    # chrome_options.add_argument('--headless')  # 启用无头模式
+    chrome_options.add_argument('--headless')  # 启用无头模式
     chrome_options.add_argument("--force-device-scale-factor=0.85")  # 设置为 85% 缩放
     driver = webdriver.Chrome(options=chrome_options, service=ChromeService(ChromeDriverManager().install()))
     return driver
