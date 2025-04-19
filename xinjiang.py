@@ -67,7 +67,7 @@ class PPMSXJ():
             total_height = self.driver.execute_script("return document.body.parentElement.scrollHeight")
             total_width = self.driver.execute_script("return document.body.parentElement.scrollWidth")
             # 调整窗口尺寸
-            self.driver.set_window_size(total_width, total_height - 280)
+            self.driver.set_window_size(total_width, total_height)
             element = WebDriverWait(self.driver, 10).until(EC.presence_of_element_located(
                 (By.XPATH, '//div[@class="legendBox"]')))
             unittest.TestCase.assertTrue(element is not None, "登录成功，成功打开首页，且指定元素存在")

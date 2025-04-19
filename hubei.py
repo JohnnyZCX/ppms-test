@@ -4,6 +4,7 @@ import unittest
 import ddddocr
 import docx
 import openpyxl
+from selenium.webdriver import ActionChains
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
@@ -45,7 +46,6 @@ class PPMSHB():
     def test_shouye(self):
         username = input("湖北省级系统生产环境巡检开始\n请输入登录用户名：")
         password = input("请输入登录密码：")
-        self.driver.maximize_window()
         self.driver.get("https://nyt.hubei.gov.cn/pestiot/")
         self.driver.implicitly_wait(5)
 
@@ -2698,13 +2698,19 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//span[@style='margin-left: 20px;'][text()='稻飞虱']").click()
             time.sleep(3)
+            # iframe双层切换
+            WebDriverWait(self.driver, 10).until(EC.frame_to_be_available_and_switch_to_it((By.XPATH, "//iframe[@class='iframe']")))
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "trans—iframe")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//div[@id='navTitle'][text()='稻飞虱 · 发生分布']")))
+                EC.visibility_of_element_located((By.XPATH, "//div[@id='navTitle'][text()='稻飞虱 · 发生分布']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-稻飞虱页")
             utils.g_logger.info("病虫专题-稻飞虱页显示正常")
             sheet.append(["病虫专题-稻飞虱", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_稻飞虱.png", doc,
                                   "病虫专题_稻飞虱")
+            # 切换回主页面
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-稻飞虱页异常")
             sheet.append(["病虫专题-稻飞虱", "异常"])
@@ -2715,14 +2721,19 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//span[@style='margin-left: 20px;'][text()='赤霉病']").click()
             time.sleep(3)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.XPATH, "//iframe[@class='iframe']")))
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "trans—iframe")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located(
+                EC.visibility_of_element_located(
                     (By.XPATH, "//div[@id='navTitle'][text()='小麦赤霉病专题 · 发生分布']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-赤霉病页")
             utils.g_logger.info("病虫专题-赤霉病页显示正常")
             sheet.append(["病虫专题-赤霉病", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_赤霉病.png", doc,
                                   "病虫专题_赤霉病")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-赤霉病页异常")
             sheet.append(["病虫专题-赤霉病", "异常"])
@@ -2733,14 +2744,19 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//span[@style='margin-left: 20px;'][text()='条锈病']").click()
             time.sleep(3)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.XPATH, "//iframe[@class='iframe']")))
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "trans—iframe")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located(
+                EC.visibility_of_element_located(
                     (By.XPATH, "//div[@id='navTitle'][text()='条锈病湖北 · 发生分布']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-条锈病页")
             utils.g_logger.info("病虫专题-条锈病页显示正常")
             sheet.append(["病虫专题-条锈病", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_条锈病.png", doc,
                                   "病虫专题_条锈病")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-条锈病页异常")
             sheet.append(["病虫专题-条锈病", "异常"])
@@ -2754,13 +2770,16 @@ class PPMSHB():
             time.sleep(3)
             self.driver.find_element(By.XPATH, "//li[contains(@class,'is-opened')]//li[text()='GIS分析 ']").click()
             time.sleep(10)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "extend1")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//div[@class='legend']")))
+                EC.visibility_of_element_located((By.XPATH, "//div[@class='legend']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-马铃薯晚疫病-GIS分析页")
             utils.g_logger.info("病虫专题-马铃薯晚疫病-GIS分析页显示正常")
             sheet.append(["病虫专题-马铃薯晚疫病-GIS分析", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_马铃薯晚疫病_GIS分析.png", doc,
                                   "病虫专题_马铃薯晚疫病_GIS分析")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-马铃薯晚疫病-GIS分析页异常")
             sheet.append(["病虫专题-马铃薯晚疫病-GIS分析", "异常"])
@@ -2771,13 +2790,16 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//li[contains(@class,'is-opened')]//li[text()='监测期设置 ']").click()
             time.sleep(10)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "extend1")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//th[text()='出苗期']")))
+                EC.visibility_of_element_located((By.XPATH, "//th[text()='出苗期']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-马铃薯晚疫病-监测期设置页")
             utils.g_logger.info("病虫专题-马铃薯晚疫病-监测期设置页显示正常")
             sheet.append(["病虫专题-马铃薯晚疫病-监测期设置", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_马铃薯晚疫病_监测期设置.png", doc,
                                   "病虫专题_马铃薯晚疫病_监测期设置")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-马铃薯晚疫病-监测期设置页异常")
             sheet.append(["病虫专题-马铃薯晚疫病-监测期设置", "异常"])
@@ -2788,13 +2810,16 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//li[contains(@class,'is-opened')]//li[text()='侵染曲线 ']").click()
             time.sleep(10)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "extend4")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//div[text()='侵染程度：']")))
+                EC.visibility_of_element_located((By.XPATH, "//div[text()='侵染程度：']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-马铃薯晚疫病-侵染曲线页")
             utils.g_logger.info("病虫专题-马铃薯晚疫病-侵染曲线页显示正常")
             sheet.append(["病虫专题-马铃薯晚疫病-侵染曲线", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_马铃薯晚疫病_侵染曲线.png", doc,
                                   "病虫专题_马铃薯晚疫病_侵染曲线")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-马铃薯晚疫病-侵染曲线页异常")
             sheet.append(["病虫专题-马铃薯晚疫病-侵染曲线", "异常"])
@@ -2805,13 +2830,16 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//li[contains(@class,'is-opened')]//li[text()='湿润期统计 ']").click()
             time.sleep(10)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "extend1")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//label[text()='监测期']")))
+                EC.visibility_of_element_located((By.XPATH, "//label[text()='监测期']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-马铃薯晚疫病-湿润期统计页")
             utils.g_logger.info("病虫专题-马铃薯晚疫病-湿润期统计页显示正常")
             sheet.append(["病虫专题-马铃薯晚疫病-湿润期统计", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_马铃薯晚疫病_湿润期统计.png", doc,
                                   "病虫专题_马铃薯晚疫病_湿润期统计")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-马铃薯晚疫病-湿润期统计页异常")
             sheet.append(["病虫专题-马铃薯晚疫病-湿润期统计", "异常"])
@@ -2822,13 +2850,16 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//li[contains(@class,'is-opened')]//li[text()='数据查询 ']").click()
             time.sleep(10)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "extend1")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//th[text()='数据时间']")))
+                EC.visibility_of_element_located((By.XPATH, "//th[text()='数据时间']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-马铃薯晚疫病-数据查询页")
             utils.g_logger.info("病虫专题-马铃薯晚疫病-数据查询页显示正常")
             sheet.append(["病虫专题-马铃薯晚疫病-数据查询", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_马铃薯晚疫病_数据查询.png", doc,
                                   "病虫专题_马铃薯晚疫病_数据查询")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-马铃薯晚疫病-数据查询页异常")
             sheet.append(["病虫专题-马铃薯晚疫病-数据查询", "异常"])
@@ -2839,13 +2870,16 @@ class PPMSHB():
         try:
             self.driver.find_element(By.XPATH, "//li[contains(@class,'is-opened')]//li[text()='数据统计 ']").click()
             time.sleep(10)
+            WebDriverWait(self.driver, 10).until(
+                EC.frame_to_be_available_and_switch_to_it((By.ID, "extend1")))
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//th[text()='数据时间']")))
+                EC.visibility_of_element_located((By.XPATH, "//th[text()='数据时间']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-马铃薯晚疫病-数据统计页")
             utils.g_logger.info("病虫专题-马铃薯晚疫病-数据统计页显示正常")
             sheet.append(["病虫专题-马铃薯晚疫病-数据统计", "正常"])
             utils.page_screenshot(self.driver, "outputs/imagefiles/病虫专题_马铃薯晚疫病_数据统计.png", doc,
                                   "病虫专题_马铃薯晚疫病_数据统计")
+            self.driver.switch_to.default_content()
         except Exception as e:
             utils.g_logger.info("病虫专题-马铃薯晚疫病-数据统计页异常")
             sheet.append(["病虫专题-马铃薯晚疫病-数据统计", "异常"])
@@ -2857,7 +2891,7 @@ class PPMSHB():
             self.driver.find_element(By.XPATH, "//span[@style='margin-left: 20px;'][text()='稻纵卷叶螟']").click()
             time.sleep(3)
             element = WebDriverWait(self.driver, 10).until(
-                EC.presence_of_all_elements_located((By.XPATH, "//div[text()='卷叶率预测模型']")))
+                EC.presence_of_element_located((By.XPATH, "//div[text()='卷叶率预测模型']")))
             unittest.TestCase.assertTrue(element is not None, "成功打开病虫专题-稻纵卷叶螟页")
             utils.g_logger.info("病虫专题-稻纵卷叶螟页显示正常")
             sheet.append(["病虫专题-稻纵卷叶螟", "正常"])
@@ -3516,21 +3550,20 @@ class PPMSHB():
             element = WebDriverWait(self.driver, 10).until(
                 EC.visibility_of_element_located(
                     (By.XPATH, "//div[text()='农药械']")))
-            unittest.TestCase.assertTrue(element is not None, "成功打开指挥调度-绿色示范区大屏")
-            self.driver.find_element(By.XPATH,
-                                     "//div[@class='el-form-item__content']/button//i[contains(@class,'back')]").click()
-            utils.g_logger.info("指挥调度-绿色示范区大屏显示正常")
-            sheet.append(["指挥调度-绿色示范区大屏", "正常"])
-            utils.page_screenshot(self.driver, "outputs/imagefiles/指挥调度_绿色示范区大屏.png", doc,
-                                  "指挥调度_绿色示范区大屏")
+            unittest.TestCase.assertTrue(element is not None, "成功打开指挥调度-农药械大屏")
+            utils.g_logger.info("指挥调度-农药械大屏显示正常")
+            sheet.append(["指挥调度-农药械大屏", "正常"])
+            utils.page_screenshot(self.driver, "outputs/imagefiles/指挥调度_农药械大屏.png", doc,
+                                  "指挥调度_农药械大屏")
         except Exception as e:
-            utils.g_logger.info("指挥调度-绿色示范区大屏异常")
-            sheet.append(["指挥调度-绿色示范区大屏", "异常"])
-            utils.page_screenshot(self.driver, "outputs/imagefiles/指挥调度-绿色示范区大屏.png", doc,
-                                  "指挥调度-绿色示范区大屏")
+            utils.g_logger.info("指挥调度-农药械大屏异常")
+            sheet.append(["指挥调度-农药械大屏", "异常"])
+            utils.page_screenshot(self.driver, "outputs/imagefiles/指挥调度-农药械大屏.png", doc,
+                                  "指挥调度-农药械大屏")
 
         # 昆虫雷达
         try:
+            self.driver.get("https://nyt.hubei.gov.cn/pestiot/")
             self.driver.find_element(By.XPATH, "//i[@class='iconfont icon-insectpicture']").click()
             time.sleep(3)
             # 获取所有窗口的句柄
@@ -3580,6 +3613,7 @@ if __name__ == '__main__':
     p.test_zhibaotixi()
     p.test_bingchongfangzhi()
     p.test_nongyaoxie()
+    p.test_xitongguanli()
     p.test_wulianwang()
     p.test_zhibaotongji()
     p.test_bingchongzhuanti()
